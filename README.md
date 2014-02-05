@@ -1,9 +1,4 @@
 INTA_4742
 =========
 
-
-This is a change to the readme
-
-Kaitlyn
-
-Hello, world
+I am also making changes, so now we can see what happens when several people make changes.
