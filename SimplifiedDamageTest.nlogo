@@ -5,11 +5,12 @@ breed [unionArtilleryUnits unionArtilleryUnit]                        ;;union ar
 breed [confederateArtilleryUnits confederateArtilleryUnit]            ;;confederate artillery units
 
 ;;give the turtles their attributes
+turtles-own [allegiance remaining strength]
 
 ;;give the patches their attributes
 
 ;;set globals
-globals [%UIvCI? %UIvCA? %UAvCI? %UAvCA?]
+globals [%UIvCI? %UIvCA? %UAvCI? %UAvCA? unionRemaining confederateRemaining]
 
 
 
@@ -21,12 +22,15 @@ globals [%UIvCI? %UIvCA? %UAvCI? %UAvCA?]
 to setup
   clear-all
   draw-map
-  check-mode                  
+  check-mode
+  create-armies                  
   reset-ticks
 end
 
 to draw-map
-  
+  ask patches [
+    set pcolor white
+  ]
 end
 
 to check-mode
@@ -48,7 +52,102 @@ to check-mode
 end
 
 to create-armies
-  
+   if %UIVCI?
+     [
+       create-unionRegiments 1
+       [
+         setxy -5 0
+         set color blue
+         set shape "square"
+         set size 2
+         set allegiance "Union"
+         set remaining unionInfantrySize
+         set strength unionInfantryStrength
+       ]
+       create-confederateRegiments 1
+       [
+         setxy 5 0
+         set color red
+         set shape "square"
+         set size 2
+         set allegiance "Confederacy"
+         set remaining confederateInfantrySize
+         set strength confederateInfantryStrength
+       ]
+     ]
+     
+   if %UIvCA?
+     [
+       create-unionRegiments 1
+       [
+         setxy -5 0        
+         set color blue
+         set shape "square"
+         set size 2
+         set allegiance "Union"
+         set remaining unionInfantrySize
+         set strength unionInfantryStrength
+       ]
+       create-confederateArtilleryUnits 1
+       [
+         setxy 5 0
+         set color red
+         set shape "x"
+         set size 2
+         set allegiance "Confederacy"
+         set remaining confederateArtillerySize
+         set strength confederateArtilleryStrength
+       ]
+     ]
+     
+   if %UAvCI?
+     [
+       create-unionArtilleryUnits 1
+       [
+         setxy -5 0
+         set color blue
+         set shape "x"
+         set size 2
+         set allegiance "Union"
+         set remaining unionArtillerySize
+         set strength unionArtilleryStrength
+       ]
+       create-confederateRegiments 1
+       [
+         setxy 5 0
+         set color red
+         set shape "square"
+         set size 2
+         set allegiance "Confederacy"
+         set remaining confederateInfantrySize
+         set strength confederateInfantryStrength
+       ]
+     ]
+     
+   if %UAvCA?
+     [
+       create-unionArtilleryUnits 1
+       [
+         setxy -5 0
+         set color blue
+         set shape "x"
+         set size 2
+         set allegiance "Union"
+         set remaining unionArtillerySize
+         set strength unionArtilleryStrength
+       ]
+       create-confederateArtilleryUnits 1
+       [
+         setxy 5 0
+         set color red
+         set shape "x"
+         set size 2
+         set allegiance "Confederacy"
+         set remaining confederateArtillerySize
+         set strength confederateArtilleryStrength
+       ]
+     ]
+     
 end
 
 ;;;;;;;;;;;;;;;;;;;;;;;
@@ -56,7 +155,84 @@ end
 ;;;;;;;;;;;;;;;;;;;;;;;
 
 to go
+  if any? unionRegiments 
+  [
+    ask unionRegiments 
+    [
+      union-give-remaining
+      move-to-enemy
+      direct-attack
+    ]
+  ]
+  
+  if any? unionArtilleryUnits
+  [
+    ask unionArtilleryUnits 
+    [
+      union-give-remaining
+      target-enemy
+      indirect-attack
+    ]
+  ]
+  
+  if any? confederateRegiments
+  [
+    ask confederateRegiments
+    [      
+      confederate-give-remaining
+      move-to-enemy
+      direct-attack
+    ]
+  ]
+  
+  if any? confederateArtilleryUnits
+  [
+    ask confederateArtilleryUnits
+    [      
+      confederate-give-remaining
+      target-enemy
+      indirect-attack
+    ] 
+  ]
+  
   tick
+end
+
+;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; Turtle Procedures ;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;
+
+to union-give-remaining
+  set unionRemaining remaining
+end
+
+to confederate-give-remaining
+  set confederateRemaining remaining
+end
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; Infantry Procedures ;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+to move-to-enemy  
+  face closestHostile (self)
+  fd 1   
+end
+
+to direct-attack
+  
+end
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; Artillery Procedures ;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+to target-enemy  
+  face closestHostile (self)
+end
+
+to indirect-attack
+  
 end
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -74,6 +250,15 @@ end
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; Confederate Artillery Procedures ;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;;;;;;;;;;;;;;;;;
+;;; Reporters ;;;
+;;;;;;;;;;;;;;;;;
+
+to-report closestHostile [thisTurtle]
+  let myAllegiance [allegiance] of thisTurtle
+  report min-one-of turtles with [allegiance != myAllegiance] [distance thisTurtle]
+end
 @#$#@#$#@
 GRAPHICS-WINDOW
 298
@@ -121,7 +306,7 @@ unionInfantrySize
 unionInfantrySize
 0
 1000
-0
+307
 1
 1
 Soldiers
@@ -136,7 +321,7 @@ confederateInfantrySize
 confederateInfantrySize
 0
 1000
-0
+241
 1
 1
 Soldiers
@@ -181,7 +366,7 @@ unionArtillerySize
 unionArtillerySize
 0
 10
-0
+6
 1
 1
 Cannons
@@ -196,7 +381,7 @@ confederateArtillerySize
 confederateArtillerySize
 0
 10
-0
+3
 1
 1
 Cannons
@@ -282,6 +467,25 @@ NIL
 NIL
 NIL
 1
+
+PLOT
+797
+31
+997
+181
+Remaining Strength
+Ticks
+Number
+0.0
+0.0
+0.0
+0.0
+true
+false
+"" ""
+PENS
+"unionRegiments" 1.0 0 -16777216 true "" "plot unionRemaining"
+"confederateRegiments" 1.0 0 -7500403 true "" "plot confederateRemaining"
 
 @#$#@#$#@
 ## WHAT IS IT?
