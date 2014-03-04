@@ -1,9 +1,85 @@
+;;create the types of turle
+breed [unionRegiments unionRegiment]                                  ;;union infantry regiments
+breed [confederateRegiments confederateRegiment]                      ;;confederate infantry regiments
+breed [unionArtilleryUnits unionArtilleryUnit]                        ;;union artillery units
+breed [confederateArtilleryUnits confederateArtilleryUnit]            ;;confederate artillery units
+
+;;give the turtles their attributes
+
+;;give the patches their attributes
+
+;;set globals
+globals [%UIvCI? %UIvCA? %UAvCI? %UAvCA?]
+
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;
+;;; Setup Procedures ;;;
+;;;;;;;;;;;;;;;;;;;;;;;;
+
+;;primary setup function
+to setup
+  clear-all
+  draw-map
+  check-mode                  
+  reset-ticks
+end
+
+to draw-map
+  
+end
+
+to check-mode
+  ifelse mode = "Union Infantry vs. Confederate Infantry"
+    [set %UIvCI? true]
+    [set %UIvCI? false]
+  
+  ifelse mode = "Union Infantry vs. Confederate Artillery"
+    [set %UIvCA? true]
+    [set %UIvCA? false]
+    
+  ifelse mode = "Union Artillery vs. Confederate Infantry"
+    [set %UAvCI? true]
+    [set %UAvCI? false]
+    
+  ifelse mode = "Union Artillery vs. Confederate Artillery"
+    [set %UAvCA? true]
+    [set %UAvCA? false]
+end
+
+to create-armies
+  
+end
+
+;;;;;;;;;;;;;;;;;;;;;;;
+;;; Loop Procedures ;;;
+;;;;;;;;;;;;;;;;;;;;;;;
+
+to go
+  tick
+end
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; Union Infantry Procedures ;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; Confederate Infantry Procedures ;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; Union Artillery Procedures ;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; Confederate Artillery Procedures ;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 @#$#@#$#@
 GRAPHICS-WINDOW
-210
-10
-649
-470
+298
+21
+737
+481
 16
 16
 13.0
@@ -25,6 +101,187 @@ GRAPHICS-WINDOW
 1
 ticks
 30.0
+
+CHOOSER
+5
+10
+278
+55
+Mode
+Mode
+"Union Infantry vs. Confederate Infantry" "Union Infantry vs. Confederate Artillery" "Union Artillery vs. Confederate Infantry" "Union Artillery vs. Confederate Artillery"
+3
+
+SLIDER
+5
+55
+199
+88
+unionInfantrySize
+unionInfantrySize
+0
+1000
+0
+1
+1
+Soldiers
+HORIZONTAL
+
+SLIDER
+5
+88
+244
+121
+confederateInfantrySize
+confederateInfantrySize
+0
+1000
+0
+1
+1
+Soldiers
+HORIZONTAL
+
+SLIDER
+5
+121
+195
+154
+unionInfantryStrength
+unionInfantryStrength
+0
+100
+50
+1
+1
+%
+HORIZONTAL
+
+SLIDER
+5
+154
+233
+187
+confederateInfantryStrength
+confederateInfantryStrength
+0
+100
+50
+1
+1
+%
+HORIZONTAL
+
+SLIDER
+5
+187
+194
+220
+unionArtillerySize
+unionArtillerySize
+0
+10
+0
+1
+1
+Cannons
+HORIZONTAL
+
+SLIDER
+5
+220
+232
+253
+confederateArtillerySize
+confederateArtillerySize
+0
+10
+0
+1
+1
+Cannons
+HORIZONTAL
+
+SLIDER
+5
+252
+192
+285
+unionArtilleryStrength
+unionArtilleryStrength
+0
+100
+49
+1
+1
+%
+HORIZONTAL
+
+SLIDER
+5
+285
+230
+318
+confederateArtilleryStrength
+confederateArtilleryStrength
+0
+100
+50
+1
+1
+%
+HORIZONTAL
+
+BUTTON
+8
+333
+72
+366
+NIL
+Setup
+NIL
+1
+T
+OBSERVER
+NIL
+NIL
+NIL
+NIL
+1
+
+BUTTON
+77
+333
+140
+366
+NIL
+Go
+NIL
+1
+T
+OBSERVER
+NIL
+NIL
+NIL
+NIL
+1
+
+BUTTON
+144
+333
+239
+366
+Go-Forever
+Go
+T
+1
+T
+OBSERVER
+NIL
+NIL
+NIL
+NIL
+1
 
 @#$#@#$#@
 ## WHAT IS IT?
