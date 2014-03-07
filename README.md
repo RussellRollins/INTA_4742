@@ -1,6 +1,6 @@
 INTA_4742
 =========
 
-I am also making changes, so now we can see what happens when several people make changes.
+Simulation of the Battle of Antietam. Attempts to answer the research question:
 
-But I want to make changes!!
+The Battle of Antietam contained an infamous Creek fording.  Generally, what strategy for surmounting an obstacle under fire can produce the optimum result?  Historically, how does this result relate to Burnside's tactics at the Battle of Antietam, and could a significantly improved result be obtained.
