@@ -6,6 +6,8 @@ breed [confederateArtilleryUnits confederateArtilleryUnit]            ;;confeder
 
 ;;give the turtles their attributes
 turtles-own [allegiance remaining strength]
+unionArtilleryUnits-own [range minRange]
+confederateArtilleryUnits-own [range minRange]
 
 ;;give the patches their attributes
 
@@ -21,7 +23,24 @@ globals [%UIvCI? %UIvCA? %UAvCI? %UAvCA? unionRemaining confederateRemaining]
 ;;primary setup function
 to setup
   clear-all
+  
+  let myList [0 0 0]
+  output-print myList
+  
+  file-open "testCSV.csv"  
+  let soldierInfo []
+  while [not file-at-end?]
+  [
+    let line file-read-line    
+    let splits csv-split(line)
+    set soldierInfo read-from-string splits        
+    output-print soldierInfo
+    set soldierInfo [] 
+  ]  
+  file-close
+  
   draw-map
+  
   check-mode
   create-armies                  
   reset-ticks
@@ -97,6 +116,8 @@ to create-armies
          set allegiance "Confederacy"
          set remaining confederateArtillerySize
          set strength confederateArtilleryStrength
+         set range artilleryRange
+         set minRange artilleryMinRange
        ]
      ]
      
@@ -111,6 +132,8 @@ to create-armies
          set allegiance "Union"
          set remaining unionArtillerySize
          set strength unionArtilleryStrength
+         set range artilleryRange
+         set minRange artilleryMinRange
        ]
        create-confederateRegiments 1
        [
@@ -135,6 +158,8 @@ to create-armies
          set allegiance "Union"
          set remaining unionArtillerySize
          set strength unionArtilleryStrength
+         set range artilleryRange
+         set minRange artilleryMinRange
        ]
        create-confederateArtilleryUnits 1
        [
@@ -145,6 +170,8 @@ to create-armies
          set allegiance "Confederacy"
          set remaining confederateArtillerySize
          set strength confederateArtilleryStrength
+         set range artilleryRange
+         set minRange artilleryMinRange
        ]
      ]
      
@@ -155,44 +182,22 @@ end
 ;;;;;;;;;;;;;;;;;;;;;;;
 
 to go
-  if any? unionRegiments 
+  if any? turtles 
   [
-    ask unionRegiments 
+    ask turtles 
     [
-      union-give-remaining
-      move-to-enemy
-      direct-attack
+      give-remaining
+      ifelse breed = unionRegiments or breed = confederateRegiments
+        [
+          move-to-enemy
+          direct-attack
+        ]
+        [
+          target-enemy
+          indirect-attack
+        ] 
+      die-if-necessary     
     ]
-  ]
-  
-  if any? unionArtilleryUnits
-  [
-    ask unionArtilleryUnits 
-    [
-      union-give-remaining
-      target-enemy
-      indirect-attack
-    ]
-  ]
-  
-  if any? confederateRegiments
-  [
-    ask confederateRegiments
-    [      
-      confederate-give-remaining
-      move-to-enemy
-      direct-attack
-    ]
-  ]
-  
-  if any? confederateArtilleryUnits
-  [
-    ask confederateArtilleryUnits
-    [      
-      confederate-give-remaining
-      target-enemy
-      indirect-attack
-    ] 
   ]
   
   tick
@@ -202,6 +207,12 @@ end
 ;;; Turtle Procedures ;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;
 
+to give-remaining
+  ifelse allegiance = "Union"
+    [union-give-remaining]
+    [confederate-give-remaining]
+end
+
 to union-give-remaining
   set unionRemaining remaining
 end
@@ -210,30 +221,79 @@ to confederate-give-remaining
   set confederateRemaining remaining
 end
 
+to lose-troops [number]
+  ifelse (remaining - number <= 0)
+    [set remaining 0]
+    [set remaining remaining - number]   
+end
+
+to die-if-necessary
+  if remaining <= 0
+    [die]
+end
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; Infantry Procedures ;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 to move-to-enemy  
-  face closestHostile (self)
-  fd 1   
+  let opponent closestHostile (self)
+  if (opponent != nobody)
+    [
+      face opponent   
+      if distance (opponent) > 1
+        [fd 1]
+    ]       
 end
 
 to direct-attack
-  
+  let opponent closestHostile (self)
+  if (opponent != nobody)
+  [
+    face opponent
+    if distance (opponent) <= 1
+      [direct-damage (opponent)]
+  ]
+end
+
+to direct-damage [opponent]
+   ;;use a lanchester model
+   let troopLoss (strength / 100) * remaining 
+   ask opponent [lose-troops (troopLoss)]
 end
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; Artillery Procedures ;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-to target-enemy  
-  face closestHostile (self)
+to target-enemy
+  let opponent closestHostile (self)
+  if (opponent != nobody)
+  [
+    face closestHostile (self)  
+  ]  
 end
 
 to indirect-attack
-  
+  let opponent closestHostile (self)
+  if (opponent != nobody)  
+  [
+    face opponent
+    if (distance (opponent) <= artilleryRange)
+    [
+      if (distance (opponent) >= artilleryMinRange)
+        [ indirect-damage (opponent)] 
+    ]
+  ]
 end
+
+to indirect-damage [opponent]
+  let enemyRemaining [remaining] of opponent
+  let troopLoss (remaining * enemyRemaining * (strength / 100))
+  output-print troopLoss
+  ask opponent [lose-troops (troopLoss)]
+end
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; Union Infantry Procedures ;;;
@@ -258,6 +318,17 @@ end
 to-report closestHostile [thisTurtle]
   let myAllegiance [allegiance] of thisTurtle
   report min-one-of turtles with [allegiance != myAllegiance] [distance thisTurtle]
+end
+
+to-report csv-split [csvLine]
+  let index 0
+  set csvLine remove " " csvLine
+  while [member? "," csvLine]
+  [
+    let i position "," csvLine
+    set csvLine replace-item i csvLine " "
+  ]
+  report (word "[ " csvLine " ]")
 end
 @#$#@#$#@
 GRAPHICS-WINDOW
@@ -295,7 +366,7 @@ CHOOSER
 Mode
 Mode
 "Union Infantry vs. Confederate Infantry" "Union Infantry vs. Confederate Artillery" "Union Artillery vs. Confederate Infantry" "Union Artillery vs. Confederate Artillery"
-3
+1
 
 SLIDER
 5
@@ -306,7 +377,7 @@ unionInfantrySize
 unionInfantrySize
 0
 1000
-307
+500
 1
 1
 Soldiers
@@ -321,7 +392,7 @@ confederateInfantrySize
 confederateInfantrySize
 0
 1000
-241
+500
 1
 1
 Soldiers
@@ -336,7 +407,7 @@ unionInfantryStrength
 unionInfantryStrength
 0
 100
-50
+12
 1
 1
 %
@@ -351,7 +422,7 @@ confederateInfantryStrength
 confederateInfantryStrength
 0
 100
-50
+16
 1
 1
 %
@@ -396,7 +467,7 @@ unionArtilleryStrength
 unionArtilleryStrength
 0
 100
-49
+50
 1
 1
 %
@@ -411,7 +482,7 @@ confederateArtilleryStrength
 confederateArtilleryStrength
 0
 100
-50
+16
 1
 1
 %
@@ -471,8 +542,8 @@ NIL
 PLOT
 797
 31
-997
-181
+1263
+406
 Remaining Strength
 Ticks
 Number
@@ -484,8 +555,45 @@ true
 false
 "" ""
 PENS
-"unionRegiments" 1.0 0 -16777216 true "" "plot unionRemaining"
-"confederateRegiments" 1.0 0 -7500403 true "" "plot confederateRemaining"
+"unionRegiments" 1.0 0 -13791810 true "" "plot unionRemaining"
+"confederateRegiments" 1.0 0 -2674135 true "" "plot confederateRemaining"
+
+SLIDER
+14
+386
+186
+419
+artilleryRange
+artilleryRange
+0
+10
+6
+1
+1
+NIL
+HORIZONTAL
+
+OUTPUT
+29
+433
+269
+487
+12
+
+SLIDER
+211
+385
+383
+418
+artilleryMinRange
+artilleryMinRange
+0
+10
+2
+1
+1
+NIL
+HORIZONTAL
 
 @#$#@#$#@
 ## WHAT IS IT?
