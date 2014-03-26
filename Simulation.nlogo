@@ -1,18 +1,4 @@
-extensions [array]
-
-;;create the types of turle
-breed [unionRegiments unionRegiment]                                  ;;union infantry regiments
-breed [confederateRegiments confederateRegiment]                      ;;confederate infantry regiments
-breed [unionArtilleryUnits unionArtilleryUnit]                        ;;union artillery units
-breed [confederateArtilleryUnits confederateArtilleryUnit]            ;;confederate artillery units
-
-;;give the turtles their attributes
-turtles-own [allegiance remaining strength]
-
-;;give the patches their attributes
-
-;;set globals
-globals [%UIvCI? %UIvCA? %UAvCI? %UAvCA? unionRemaining confederateRemaining]
+__includes ["setup.nls" "reporters.nls"]
 
 ;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; Setup Procedures ;;;
@@ -27,127 +13,10 @@ end
 
 ;;initialize the various turtles
 to create-armies
-  create-ui
-  create-ua
-  create-ci
-  create-ca
-end
-
-;;these four functions initialize each type of turtle from a csv file
-;;the format of information about each turtle in the text file is
-;;line[0] = xPos
-;;line[1] = yPos
-;;etc
-to create-ui
-  file-open "unionInfantrySan.csv"
-  let soldierInfo []
-  let line " "
-  let splits " "
-  let xPos 0
-  let yPos 0  
-  while [not file-at-end?]
-  [
-    set line file-read-line    
-    set splits csv-split(line)
-    set soldierInfo read-from-string splits
-    set soldierInfo array:from-list soldierInfo
-    set xPos array:item soldierInfo 0
-    set yPos array:item soldierInfo 1     
-    create-unionRegiments 1
-       [
-         setxy xPos yPos
-         set color blue
-         set shape "square"
-         set size 2
-         set allegiance "Union"                  
-       ]
-    set soldierInfo [] 
-  ]
-  file-close
-end
-
-to create-ua
-  file-open "unionArtillerySan.csv"
-  let soldierInfo []
-  let line " "
-  let splits " "
-  let xPos 0
-  let yPos 0  
-  while [not file-at-end?]
-  [
-    set line file-read-line    
-    set splits csv-split(line)
-    set soldierInfo read-from-string splits
-    set soldierInfo array:from-list soldierInfo
-    set xPos array:item soldierInfo 0
-    set yPos array:item soldierInfo 1     
-    create-unionArtilleryUnits 1
-       [
-         setxy xPos yPos
-         set color blue
-         set shape "x"
-         set size 2
-         set allegiance "Union"                  
-       ]
-    set soldierInfo [] 
-  ]
-  file-close
-end
-
-to create-ci
-  file-open "confedInfantrySan.csv"
-  let soldierInfo []
-  let line " "
-  let splits " "
-  let xPos 0
-  let yPos 0  
-  while [not file-at-end?]
-  [
-    set line file-read-line    
-    set splits csv-split(line)
-    set soldierInfo read-from-string splits
-    set soldierInfo array:from-list soldierInfo
-    set xPos array:item soldierInfo 0
-    set yPos array:item soldierInfo 1     
-    create-confederateRegiments 1
-       [
-         setxy xPos yPos
-         set color red
-         set shape "square"
-         set size 2
-         set allegiance "Union"                  
-       ]
-    set soldierInfo [] 
-  ]
-  file-close
-end
-
-to create-ca
-  file-open "confedArtillerySan.csv"
-  let soldierInfo []
-  let line " "
-  let splits " "
-  let xPos 0
-  let yPos 0  
-  while [not file-at-end?]
-  [
-    set line file-read-line    
-    set splits csv-split(line)
-    set soldierInfo read-from-string splits
-    set soldierInfo array:from-list soldierInfo
-    set xPos array:item soldierInfo 0
-    set yPos array:item soldierInfo 1     
-    create-confederateRegiments 1
-       [
-         setxy xPos yPos
-         set color red
-         set shape "x"
-         set size 2
-         set allegiance "Union"                  
-       ]
-    set soldierInfo [] 
-  ]
-  file-close
+  create-ui                                                           ;;union infantry
+  create-ua                                                           ;;union artillery
+  create-ci                                                           ;;confederate infantry
+  create-ca                                                           ;;confederate artillery
 end
 
 ;;;;;;;;;;;;;;;;;;;;;;;
@@ -161,50 +30,6 @@ end
 ;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; Turtle Procedures ;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;; Infantry Procedures ;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;; Artillery Procedures ;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;; Union Infantry Procedures ;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;; Confederate Infantry Procedures ;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;; Union Artillery Procedures ;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;; Confederate Artillery Procedures ;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-;;;;;;;;;;;;;;;;;
-;;; Reporters ;;;
-;;;;;;;;;;;;;;;;;
-
-to-report closestHostile [thisTurtle]
-  let myAllegiance [allegiance] of thisTurtle
-  report min-one-of turtles with [allegiance != myAllegiance] [distance thisTurtle]
-end
-
-to-report csv-split [csvLine]
-  let index 0
-  set csvLine remove " " csvLine
-  while [member? "," csvLine]
-  [
-    let i position "," csvLine
-    set csvLine replace-item i csvLine " "
-  ]
-  report (word "[ " csvLine " ]")
-end
 @#$#@#$#@
 GRAPHICS-WINDOW
 210
@@ -234,13 +59,47 @@ ticks
 30.0
 
 BUTTON
-59
-82
-122
-115
+9
+10
+64
+43
 NIL
 setup
 NIL
+1
+T
+OBSERVER
+NIL
+NIL
+NIL
+NIL
+1
+
+BUTTON
+72
+10
+135
+43
+NIL
+go
+NIL
+1
+T
+OBSERVER
+NIL
+NIL
+NIL
+NIL
+1
+
+BUTTON
+141
+11
+204
+44
+NIL
+go
+T
 1
 T
 OBSERVER

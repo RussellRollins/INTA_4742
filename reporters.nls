@@ -1,0 +1,25 @@
+;;;;;;;;;;;;;;;;;
+;;; Reporters ;;;
+;;;;;;;;;;;;;;;;;
+
+;;reports the nearest turtle with a different allegiance
+to-report closestHostile [thisTurtle]
+  let myAllegiance [allegiance] of thisTurtle
+  report min-one-of turtles with [allegiance != myAllegiance] [distance thisTurtle]
+end
+
+;;reports a string in NetLogo format created from a csv line
+;;for instance would turn
+;;"   10  ,  9, 8, 6"
+;;into
+;;[ 10 9 8 6 ]
+to-report csv-split [csvLine]
+  let index 0
+  set csvLine remove " " csvLine                                      ;;eliminate whitespace
+  while [member? "," csvLine]                                         ;;while there are still commas in the line
+  [                 
+    set index position "," csvLine                                    ;;find the position of the comma
+    set csvLine replace-item index csvLine " "                        ;;replace the comma with a space
+  ]
+  report (word "[ " csvLine " ]")                                     ;;surround with brackets and return
+end
