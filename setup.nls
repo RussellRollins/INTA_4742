@@ -22,7 +22,7 @@ turtles-own [allegiance]                                              ;;specifie
 
 ;;initialize union regiments
 to create-ui
-  file-open "unionInfantrySan.csv"
+  file-open "SanitizedSetupFiles/unionInfantrySan.csv"
   let soldierInfo []
   let line " "
   let splits " "
@@ -51,7 +51,7 @@ end
 
 ;;initialize union artillery units.  See create-ui comments for documentation
 to create-ua
-  file-open "unionArtillerySan.csv"
+  file-open "SanitizedSetupFiles/unionArtillerySan.csv"
   let soldierInfo []
   let line " "
   let splits " "
@@ -80,7 +80,7 @@ end
 
 ;;initialize confederate regiments.  See create-ui comments for documentation
 to create-ci
-  file-open "confedInfantrySan.csv"
+  file-open "SanitizedSetupFiles/confedInfantrySan.csv"
   let soldierInfo []
   let line " "
   let splits " "
@@ -109,7 +109,7 @@ end
 
 ;;initialize confederate artillery units.  See create-ui comments for documentation
 to create-ca
-  file-open "confedArtillerySan.csv"
+  file-open "SanitizedSetupFiles/confedArtillerySan.csv"
   let soldierInfo []
   let line " "
   let splits " "

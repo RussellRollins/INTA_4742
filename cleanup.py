@@ -1,7 +1,7 @@
 import csv
 
-reads = ['unionInfantry.csv', 'confedInfantry.csv', 'unionArtillery.csv', 'confedArtillery.csv']
-writes = ['unionInfantrySan.csv', 'confedInfantrySan.csv', 'unionArtillerySan.csv', 'confedArtillerySan.csv']
+reads = ['SetupFiles/unionInfantry.csv', 'SetupFiles/confedInfantry.csv', 'SetupFiles/unionArtillery.csv', 'SetupFiles/confedArtillery.csv']
+writes = ['SanitizedSetupFiles/unionInfantrySan.csv', 'SanitizedSetupFiles/confedInfantrySan.csv', 'SanitizedSetupFiles/unionArtillerySan.csv', 'SanitizedSetupFiles/confedArtillerySan.csv']
 
 def sanitizer(readFileName, writeFileName): 
   readFile = open(readFileName, 'rb')
