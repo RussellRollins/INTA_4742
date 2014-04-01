@@ -8,6 +8,11 @@ to-report closestHostile [thisTurtle]
   report min-one-of turtles with [allegiance != myAllegiance] [distance thisTurtle]
 end
 
+to-report closestAlly [thisTurtle]
+  let myAllegiance [allegiance] of thisTurtle
+  report min-one-of turtles with [allegiance = myAllegiance] [distance thisTurtle]
+end
+
 ;;reports a string in NetLogo format created from a csv line
 ;;for instance would turn
 ;;"   10  ,  9, 8, 6"
