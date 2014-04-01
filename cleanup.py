@@ -3,9 +3,14 @@ import csv
 reads = ['SetupFiles/unionInfantry.csv', 'SetupFiles/confedInfantry.csv', 'SetupFiles/unionArtillery.csv', 'SetupFiles/confedArtillery.csv']
 writes = ['SanitizedSetupFiles/unionInfantrySan.csv', 'SanitizedSetupFiles/confedInfantrySan.csv', 'SanitizedSetupFiles/unionArtillerySan.csv', 'SanitizedSetupFiles/confedArtillerySan.csv']
 
+def unicode_csv_reader(utf8_data, dialect=csv.excel, **kwargs):
+  csv_reader = csv.reader(utf8_data, dialect=dialect, **kwargs)
+  for row in csv_reader:
+    yield [unicode(cell, 'utf-8') for cell in row]
+
 def sanitizer(readFileName, writeFileName): 
   readFile = open(readFileName, 'rb')
-  reader = csv.reader(readFile)
+  reader = unicode_csv_reader(readFile)
   writeFile = open(writeFileName, 'w')
   writer = csv.writer(writeFile)
 
