@@ -7,8 +7,15 @@ __includes ["setup.nls" "reporters.nls"]
 ;;primary setup function
 to setup
   clear-all
+  draw-map
   create-armies                  
   reset-ticks
+end
+
+;;draw the map
+to draw-map
+  cp ct                                                               ;;cp(clear patches) cd(clear drawing)
+  import-pcolors "AntietamFinal.jpg"                                  ;;import background map
 end
 
 ;;initialize the various turtles
@@ -34,11 +41,11 @@ end
 GRAPHICS-WINDOW
 210
 10
-649
-470
-16
-16
-13.0
+828
+483
+-1
+-1
+0.5
 1
 10
 1
@@ -48,10 +55,10 @@ GRAPHICS-WINDOW
 1
 1
 1
--16
-16
--16
-16
+0
+1215
+0
+883
 0
 0
 1
