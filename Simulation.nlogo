@@ -103,14 +103,16 @@ to move
   ]
   
   ;;avoid bunching
-  let myAlly closestAlly(self)  
-  let comfortDistance 1
-  if (myAlly != nobody)
-  [    
-    if distance (myAlly) <= comfortDistance
+  let cAlly closestAlly(self)
+  if distance cAlly < 1
+  [
+    if distance cAlly = 0
     [
-      rt -20 + random(40)
-    ]      
+      rt random * 360
+    ] else [
+      face cAlly
+      rt 180
+    ]    
   ]
   
   ;;move forward
@@ -120,8 +122,8 @@ end
 GRAPHICS-WINDOW
 210
 10
-1436
-925
+828
+483
 -1
 -1
 0.5
