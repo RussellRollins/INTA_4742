@@ -50,13 +50,15 @@ to create-ua
     set soldierInfo read-from-string splits
     set soldierInfo array:from-list soldierInfo
     set xPos array:item soldierInfo 0
-    set yPos array:item soldierInfo 1     
+    set yPos array:item soldierInfo 1  
+    set initDir array:item soldierInfo 2   
     create-unionArtilleryUnits 1
        [
          setxy xPos yPos
          set color blue
-         set shape "x"
-         set size 2
+         set shape "unionarty"
+         set size 15
+         set heading initDir
          set allegiance "Union"                  
        ]
     set soldierInfo [] 
@@ -108,13 +110,15 @@ to create-ca
     set soldierInfo read-from-string splits
     set soldierInfo array:from-list soldierInfo
     set xPos array:item soldierInfo 0
-    set yPos array:item soldierInfo 1     
+    set yPos array:item soldierInfo 1 
+    set initDir array:item soldierInfo 2     
     create-confederateRegiments 10
        [
          setxy xPos yPos
          set color red
-         set shape "x"
-         set size 2
+         set shape "rebelarty"
+         set size 15
+         set heading initDir
          set allegiance "Confederate"                  
        ]
     set soldierInfo [] 
