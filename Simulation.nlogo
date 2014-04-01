@@ -16,7 +16,7 @@ unionRegiments-own [areCrossing haveCrossed]
 ;;give the patches their attributes
 
 ;;set globals
-globals [destinationOne destinationTwo destinationThree]
+globals [destinationOne destinationTwo destinationThree initDir]
 
 ;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; Setup Procedures ;;;
@@ -426,6 +426,13 @@ Polygon -7500403 true true 135 105 90 60 45 45 75 105 135 135
 Polygon -7500403 true true 165 105 165 135 225 105 255 45 210 60
 Polygon -7500403 true true 135 90 120 45 150 15 180 45 165 90
 
+rebelarty
+true
+0
+Rectangle -2674135 true false 75 135 105 270
+Rectangle -2674135 true false 195 135 225 270
+Rectangle -2674135 true false 120 15 180 285
+
 sheep
 false
 15
@@ -512,6 +519,13 @@ Polygon -10899396 true false 105 90 75 75 55 75 40 89 31 108 39 124 60 105 75 10
 Polygon -10899396 true false 132 85 134 64 107 51 108 17 150 2 192 18 192 52 169 65 172 87
 Polygon -10899396 true false 85 204 60 233 54 254 72 266 85 252 107 210
 Polygon -7500403 true true 119 75 179 75 209 101 224 135 220 225 175 261 128 261 81 224 74 135 88 99
+
+unionarty
+true
+0
+Rectangle -13345367 true false 75 135 105 270
+Rectangle -13345367 true false 195 135 225 270
+Rectangle -13345367 true false 120 15 180 285
 
 wheel
 false
