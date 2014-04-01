@@ -1,4 +1,22 @@
-__includes ["setup.nls" "reporters.nls"]
+__includes ["setupArmies.nls" "setupPatches.nls" "reporters.nls"]
+
+;;include extensions
+extensions [array]
+
+;;create the types of turle
+breed [unionRegiments unionRegiment]                                  ;;union infantry regiments
+breed [confederateRegiments confederateRegiment]                      ;;confederate infantry regiments
+breed [unionArtilleryUnits unionArtilleryUnit]                        ;;union artillery units
+breed [confederateArtilleryUnits confederateArtilleryUnit]            ;;confederate artillery units
+
+;;give the turtles their attributes
+turtles-own [allegiance]                                              ;;specifies union or confederate
+unionRegiments-own [areCrossing haveCrossed]
+
+;;give the patches their attributes
+
+;;set globals
+globals [destinationOne destinationTwo destinationThree]
 
 ;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; Setup Procedures ;;;
@@ -8,7 +26,10 @@ __includes ["setup.nls" "reporters.nls"]
 to setup
   clear-all
   draw-map
-  create-armies                  
+  create-armies
+  set destinationOne patch 638 563
+  set destinationTwo patch 619 555
+  set destinationThree patch 644 481                  
   reset-ticks
 end
 
@@ -31,21 +52,79 @@ end
 ;;;;;;;;;;;;;;;;;;;;;;;
 
 to go
+  ask unionRegiments [
+    move
+    
+  ]
   
+  ask confederateRegiments [
+    
+  ]
+  
+  ask unionArtilleryUnits [
+    
+  ]
+  
+  ask confederateArtilleryUnits [
+    
+  ]
+  
+  tick
 end
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; Turtle Procedures ;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;
+
+to move
+  ;;face destination
+  ;;for now, hardcoded
+  ifelse areCrossing
+  [
+    face destinationTwo
+    if patch-here = destinationTwo
+    [
+      set haveCrossed True 
+      set areCrossing False
+    ]
+  ]
+  [
+    ifelse haveCrossed
+    [
+      face destinationThree
+    ]
+    [
+      if patch-here = destinationOne
+      [
+        set areCrossing True
+      ]
+      face destinationOne
+    ] 
+  ]
+  
+  ;;avoid bunching
+  let myAlly closestAlly(self)  
+  let comfortDistance 1
+  if (myAlly != nobody)
+  [    
+    if distance (myAlly) <= comfortDistance
+    [
+      rt -20 + random(40)
+    ]      
+  ]
+  
+  ;;move forward
+  fd 1
+end
 @#$#@#$#@
 GRAPHICS-WINDOW
 210
 10
-1435
-924
+1436
+925
 -1
 -1
-0.25
+0.5
 1
 10
 1
@@ -56,11 +135,11 @@ GRAPHICS-WINDOW
 1
 1
 0
-1214
+1215
 0
-882
-0
-0
+883
+1
+1
 1
 ticks
 30.0
@@ -219,13 +298,6 @@ false
 0
 Circle -7500403 true true 0 0 300
 Circle -16777216 true false 30 30 240
-
-confederatearty
-true
-0
-Rectangle -2674135 true false 75 150 105 270
-Rectangle -2674135 true false 195 150 225 270
-Polygon -2674135 true false 135 30 120 30 120 285 180 285 180 30 165 30
 
 cow
 false
@@ -438,13 +510,6 @@ Polygon -10899396 true false 105 90 75 75 55 75 40 89 31 108 39 124 60 105 75 10
 Polygon -10899396 true false 132 85 134 64 107 51 108 17 150 2 192 18 192 52 169 65 172 87
 Polygon -10899396 true false 85 204 60 233 54 254 72 266 85 252 107 210
 Polygon -7500403 true true 119 75 179 75 209 101 224 135 220 225 175 261 128 261 81 224 74 135 88 99
-
-unionarty
-true
-0
-Rectangle -13345367 true false 75 150 105 270
-Rectangle -13345367 true false 195 150 225 270
-Polygon -13345367 true false 135 30 120 30 120 285 180 285 180 30 165 30
 
 wheel
 false
