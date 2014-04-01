@@ -41,8 +41,8 @@ end
 GRAPHICS-WINDOW
 210
 10
-1132
-704
+1435
+924
 -1
 -1
 0.25
@@ -56,9 +56,9 @@ GRAPHICS-WINDOW
 1
 1
 0
-1215
+1214
 0
-883
+882
 0
 0
 1
@@ -219,6 +219,13 @@ false
 0
 Circle -7500403 true true 0 0 300
 Circle -16777216 true false 30 30 240
+
+confederatearty
+true
+0
+Rectangle -2674135 true false 75 150 105 270
+Rectangle -2674135 true false 195 150 225 270
+Polygon -2674135 true false 135 30 120 30 120 285 180 285 180 30 165 30
 
 cow
 false
@@ -431,6 +438,13 @@ Polygon -10899396 true false 105 90 75 75 55 75 40 89 31 108 39 124 60 105 75 10
 Polygon -10899396 true false 132 85 134 64 107 51 108 17 150 2 192 18 192 52 169 65 172 87
 Polygon -10899396 true false 85 204 60 233 54 254 72 266 85 252 107 210
 Polygon -7500403 true true 119 75 179 75 209 101 224 135 220 225 175 261 128 261 81 224 74 135 88 99
+
+unionarty
+true
+0
+Rectangle -13345367 true false 75 150 105 270
+Rectangle -13345367 true false 195 150 225 270
+Polygon -13345367 true false 135 30 120 30 120 285 180 285 180 30 165 30
 
 wheel
 false
