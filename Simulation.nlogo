@@ -103,18 +103,18 @@ to move
   ]
   
   ;;avoid bunching
-  let myAlly closestAlly(self)  
-  let comfortDistance 1
-  if (myAlly != nobody)
-  [    
-    if distance (myAlly) <= comfortDistance
-    [
-      rt -20 + random(40)
-    ]      
+  ;;how am i going to do this.
+  ;;check if there is a turtle in front of you
+  ifelse any? [turtles-here] of patch-ahead 1
+  ;;if there is a turtle in front of you, don't go
+  [
+    rt -90 + random(180)
+    fd 0.1
   ]
-  
-  ;;move forward
-  fd 1
+  ;;if there is not a turtle in front of you, go
+  [
+    fd 1.25
+  ]
 end
 @#$#@#$#@
 GRAPHICS-WINDOW
