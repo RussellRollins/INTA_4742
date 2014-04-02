@@ -112,7 +112,7 @@ to create-ca
     set xPos array:item soldierInfo 0
     set yPos array:item soldierInfo 1 
     set initDir array:item soldierInfo 2     
-    create-confederateRegiments 10
+    create-confederateArtilleryUnits 1
        [
          setxy xPos yPos
          set color red
