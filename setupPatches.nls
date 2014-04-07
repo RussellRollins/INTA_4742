@@ -1,5 +1,83 @@
 ;;create the different river groups
 
+;;create destination ones
+  to create-destinations
+        
+    file-open "SanitizedSetupFiles/destinationOnesSan.csv"
+    let destinationInfo []
+    let line " "
+    let splits " "
+    let xCoord 0
+    let yCoord 0
+    let group -1  
+    while [not file-at-end?]                                            ;;iterate through each line of the csv
+    [
+      set line file-read-line    
+      set splits csv-split(line)                                        ;;encloses items in brackets and space seperates
+      set destinationInfo read-from-string splits                       ;;read into a list
+      set destinationInfo array:from-list destinationInfo               ;;convert into an array
+      set xCoord array:item destinationInfo 0
+      set yCoord array:item destinationInfo 1
+      set group array:item destinationInfo 2     
+      
+      if group = groupSelected
+        [ask patch xCoord yCoord [set isDestinationOne true]]
+      
+      set destinationInfo []                                            ;;reset information
+    ]
+    file-close
+    
+    set destinationOnes patches with [isDestinationOne = true]
+    
+    file-open "SanitizedSetupFiles/destinationTwosSan.csv"    
+    set line " "
+    set splits " "
+    set xCoord 0
+    set yCoord 0
+    set group -1  
+    while [not file-at-end?]                                            ;;iterate through each line of the csv
+    [
+      set line file-read-line    
+      set splits csv-split(line)
+      print splits                                        ;;encloses items in brackets and space seperates
+      set destinationInfo read-from-string splits                       ;;read into a list
+      set destinationInfo array:from-list destinationInfo               ;;convert into an array
+      set xCoord array:item destinationInfo 0
+      set yCoord array:item destinationInfo 1
+      set group array:item destinationInfo 2     
+      
+      if group = groupSelected
+        [ask patch xCoord yCoord [set isDestinationTwo true]]
+      
+      set destinationInfo []                                            ;;reset information
+    ]
+    file-close
+    
+    set destinationTwos patches with [isDestinationTwo = true]
+    
+    file-open "SanitizedSetupFiles/destinationThreesSan.csv"
+    set line " "
+    set splits " "
+    set xCoord 0
+    set yCoord 0  
+    while [not file-at-end?]                                            ;;iterate through each line of the csv
+    [
+      set line file-read-line    
+      set splits csv-split(line)                                        ;;encloses items in brackets and space seperates
+      set destinationInfo read-from-string splits                       ;;read into a list
+      set destinationInfo array:from-list destinationInfo               ;;convert into an array
+      set xCoord array:item destinationInfo 0
+      set yCoord array:item destinationInfo 1     
+      
+      ask patch xCoord yCoord [set isDestinationThree true]
+      
+      set destinationInfo []                                            ;;reset information
+    ]
+    file-close
+    
+    set destinationThrees patches with [isDestinationThree = true]
+end
+
 ;;calculate the damage for each river group
 
 ;;calculate the exhaustion factor for each river group

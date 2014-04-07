@@ -11,12 +11,13 @@ breed [confederateArtilleryUnits confederateArtilleryUnit]            ;;confeder
 
 ;;give the turtles their attributes
 turtles-own [allegiance]                                              ;;specifies union or confederate
+patches-own [isDestinationOne isDestinationTwo isDestinationThree]
 unionRegiments-own [areCrossing haveCrossed]
 
 ;;give the patches their attributes
 
 ;;set globals
-globals [destinationOne destinationTwo destinationThree initDir]
+globals [destinationOnes destinationTwos destinationThrees initDir groupSelected]
 
 ;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; Setup Procedures ;;;
@@ -26,10 +27,9 @@ globals [destinationOne destinationTwo destinationThree initDir]
 to setup
   clear-all
   draw-map
-  create-armies
-  set destinationOne patch 638 563
-  set destinationTwo patch 619 555
-  set destinationThree patch 644 481                  
+  set groupSelected 0
+  create-destinations
+  create-armies         
   reset-ticks
 end
 
@@ -43,8 +43,8 @@ end
 to create-armies
   create-ui                                                           ;;union infantry
   create-ua                                                           ;;union artillery
-  create-ci                                                           ;;confederate infantry
-  create-ca                                                           ;;confederate artillery
+  ;;create-ci                                                           ;;confederate infantry
+  ;;create-ca                                                           ;;confederate artillery
 end
 
 ;;;;;;;;;;;;;;;;;;;;;;;
@@ -81,8 +81,8 @@ to move
   ;;for now, hardcoded
   ifelse areCrossing
   [
-    face destinationTwo
-    if patch-here = destinationTwo
+    face one-of destinationTwos
+    if patch-here = one-of destinationTwos ;;XXX need to consider this harder
     [
       set haveCrossed True 
       set areCrossing False
@@ -91,40 +91,58 @@ to move
   [
     ifelse haveCrossed
     [
-      face destinationThree
+      face one-of destinationThrees
     ]
     [
-      if patch-here = destinationOne
+      if patch-here = one-of destinationOnes ;; XXX need to consider this harder
       [
         set areCrossing True
       ]
-      face destinationOne
+      face one-of destinationOnes
     ] 
   ]
+  if patch-here = one-of destinationThrees ;;XXX need to consider this harder
+    [die]
   
   ;;avoid bunching
   ;;how am i going to do this.
   ;;check if there is a turtle in front of you
   ifelse any? [turtles-here] of patch-ahead 1
-  ;;if there is a turtle in front of you, don't go
+  ;;if there is a turtle in front of you, try to avoid
   [
-    rt -90 + random(180)
-    fd 0.1
+    ;;naive solution. turn a random amount (w/o going backward) and walk there. This would help fill gaps.
+    ;;rt -90 + random(180)
+    ;;fd 0.1
+    
+    ;;well, naive solution works, but is naive.
+    ;;problem. because it is random, the turtles don't distribute very much.
+    
+    ;;new plan "look" right, then "look" left. go in an empty direction, otherwise, don't move.
+    rt 90
+    ifelse any? [turtles-here] of patch-ahead 1
+      [fd 0.5]
+      [
+        rt -180
+        ifelse any? [turtles-here] of patch-ahead 1
+          [fd 0.5]
+          [rt 90 fd -0.5]
+      ]
+    
   ]
   ;;if there is not a turtle in front of you, go
   [
-    fd 1.25
+    fd 1
   ]
 end
 @#$#@#$#@
 GRAPHICS-WINDOW
-210
-10
-1436
-925
+226
+13
+996
+596
 -1
 -1
-0.5
+0.125
 1
 10
 1
@@ -194,6 +212,24 @@ NIL
 NIL
 NIL
 1
+
+PLOT
+1002
+14
+1202
+164
+plot 1
+NIL
+NIL
+0.0
+10.0
+0.0
+10.0
+true
+false
+"" ""
+PENS
+"default" 1.0 0 -16777216 true "" "plot count turtles"
 
 @#$#@#$#@
 ## WHAT IS IT?
