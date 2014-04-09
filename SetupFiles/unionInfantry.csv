@@ -1,421 +1,421 @@
-Name,X-Coord,Y-Coord,Group ID
-11th Connecticut,765,675,
-11th Connecticut,765,673,
-11th Connecticut,764,671,
-11th Connecticut,764,669,
-11th Connecticut,763,667,
-11th Connecticut,763,665,
-11th Connecticut,762,663,
-11th Connecticut,762,661,
-11th Connecticut,761,659,
-11th Connecticut,761,657,
-11th Connecticut,760,655,
-11th Connecticut,760,653,
-11th Connecticut,759,651,
-11th Connecticut,759,649,
-11th Connecticut,758,647,
-11th Connecticut,758,645,
-11th Connecticut,757,643,
-11th Connecticut,757,641,
-11th Connecticut,756,639,
-11th Connecticut,756,637,
-9th New Hampshire,755,632,
-9th New Hampshire,755,630,
-9th New Hampshire,754,628,
-9th New Hampshire,754,626,
-9th New Hampshire,753,624,
-9th New Hampshire,753,622,
-9th New Hampshire,752,620,
-9th New Hampshire,752,618,
-9th New Hampshire,751,616,
-9th New Hampshire,751,614,
-9th New Hampshire,750,612,
-9th New Hampshire,750,610,
-9th New Hampshire,749,608,
-9th New Hampshire,749,606,
-9th New Hampshire,748,604,
-9th New Hampshire,748,602,
-9th New Hampshire,747,600,
-9th New Hampshire,747,598,
-9th New Hampshire,746,596,
-9th New Hampshire,746,594,
-2nd Maryland,745,589,
-2nd Maryland,745,587,
-2nd Maryland,744,585,
-2nd Maryland,744,583,
-2nd Maryland,743,581,
-2nd Maryland,743,579,
-2nd Maryland,742,577,
-2nd Maryland,742,575,
-2nd Maryland,741,573,
-2nd Maryland,741,571,
-2nd Maryland,740,569,
-2nd Maryland,740,567,
-2nd Maryland,739,565,
-2nd Maryland,739,563,
-2nd Maryland,738,561,
-2nd Maryland,738,559,
-2nd Maryland,737,557,
-2nd Maryland,737,555,
-2nd Maryland,736,553,
-2nd Maryland,736,551,
-35th Massachusetts,800,485,
-35th Massachusetts,801,484,
-35th Massachusetts,802,483,
-35th Massachusetts,803,482,
-35th Massachusetts,804,481,
-35th Massachusetts,805,480,
-35th Massachusetts,806,479,
-35th Massachusetts,807,478,
-35th Massachusetts,808,477,
-35th Massachusetts,809,476,
-35th Massachusetts,810,475,
-35th Massachusetts,811,474,
-35th Massachusetts,812,473,
-35th Massachusetts,813,472,
-35th Massachusetts,814,471,
-35th Massachusetts,815,470,
-35th Massachusetts,816,469,
-35th Massachusetts,817,468,
-35th Massachusetts,818,467,
-35th Massachusetts,819,466,
-21st Massachusetts,835,485,
-21st Massachusetts,836,486,
-21st Massachusetts,837,487,
-21st Massachusetts,838,488,
-21st Massachusetts,839,489,
-21st Massachusetts,840,490,
-21st Massachusetts,841,491,
-21st Massachusetts,842,492,
-21st Massachusetts,843,493,
-21st Massachusetts,844,494,
-21st Massachusetts,845,495,
-21st Massachusetts,846,496,
-21st Massachusetts,847,497,
-21st Massachusetts,848,498,
-21st Massachusetts,849,499,
-21st Massachusetts,850,500,
-21st Massachusetts,851,501,
-21st Massachusetts,852,502,
-21st Massachusetts,853,503,
-21st Massachusetts,854,504,
-51st Pennsylvania,860,510,
-51st Pennsylvania,861,511,
-51st Pennsylvania,862,512,
-51st Pennsylvania,863,513,
-51st Pennsylvania,864,514,
-51st Pennsylvania,865,515,
-51st Pennsylvania,866,516,
-51st Pennsylvania,867,517,
-51st Pennsylvania,868,518,
-51st Pennsylvania,869,519,
-51st Pennsylvania,870,520,
-51st Pennsylvania,871,521,
-51st Pennsylvania,872,522,
-51st Pennsylvania,873,523,
-51st Pennsylvania,874,524,
-51st Pennsylvania,875,525,
-51st Pennsylvania,876,526,
-51st Pennsylvania,877,527,
-51st Pennsylvania,878,528,
-51st Pennsylvania,879,529,
-51st New York,885,535,
-51st New York,886,536,
-51st New York,887,537,
-51st New York,888,538,
-51st New York,889,539,
-51st New York,890,540,
-51st New York,891,541,
-51st New York,892,542,
-51st New York,893,543,
-51st New York,894,544,
-51st New York,895,545,
-51st New York,896,546,
-51st New York,897,547,
-51st New York,898,548,
-51st New York,899,549,
-51st New York,900,550,
-51st New York,901,551,
-51st New York,902,552,
-51st New York,903,553,
-51st New York,904,554,
-36th Ohio,850,660,
-36th Ohio,851,659,
-36th Ohio,852,658,
-36th Ohio,853,657,
-36th Ohio,854,656,
-36th Ohio,855,655,
-36th Ohio,856,654,
-36th Ohio,857,653,
-36th Ohio,858,652,
-36th Ohio,859,651,
-36th Ohio,860,650,
-36th Ohio,861,649,
-36th Ohio,862,648,
-36th Ohio,863,647,
-36th Ohio,864,646,
-36th Ohio,865,645,
-36th Ohio,866,644,
-36th Ohio,867,643,
-36th Ohio,868,642,
-36th Ohio,869,641,
-11th Ohio,875,635,
-11th Ohio,876,634,
-11th Ohio,877,633,
-11th Ohio,878,632,
-11th Ohio,879,631,
-11th Ohio,880,630,
-11th Ohio,881,629,
-11th Ohio,882,628,
-11th Ohio,883,627,
-11th Ohio,884,626,
-11th Ohio,885,625,
-11th Ohio,886,624,
-11th Ohio,887,623,
-11th Ohio,888,622,
-11th Ohio,889,621,
-11th Ohio,890,620,
-11th Ohio,891,619,
-11th Ohio,892,618,
-11th Ohio,893,617,
-11th Ohio,894,616,
-6th New Hampshire,685,600,
-6th New Hampshire,686,599,
-6th New Hampshire,687,598,
-6th New Hampshire,688,597,
-6th New Hampshire,689,596,
-6th New Hampshire,690,595,
-6th New Hampshire,691,594,
-6th New Hampshire,692,593,
-6th New Hampshire,693,592,
-6th New Hampshire,694,591,
-6th New Hampshire,695,590,
-6th New Hampshire,696,589,
-6th New Hampshire,697,588,
-6th New Hampshire,698,587,
-6th New Hampshire,699,586,
-6th New Hampshire,700,585,
-6th New Hampshire,701,584,
-6th New Hampshire,702,583,
-6th New Hampshire,703,582,
-6th New Hampshire,704,581,
-48th Pennsylvania,681,654,
-48th Pennsylvania,682,653,
-48th Pennsylvania,683,652,
-48th Pennsylvania,684,651,
-48th Pennsylvania,685,650,
-48th Pennsylvania,686,649,
-48th Pennsylvania,687,648,
-48th Pennsylvania,688,647,
-48th Pennsylvania,689,646,
-48th Pennsylvania,690,645,
-48th Pennsylvania,691,644,
-48th Pennsylvania,692,643,
-48th Pennsylvania,693,642,
-48th Pennsylvania,694,641,
-48th Pennsylvania,695,640,
-48th Pennsylvania,696,639,
-48th Pennsylvania,697,638,
-48th Pennsylvania,698,637,
-48th Pennsylvania,699,636,
-48th Pennsylvania,700,635,
-28th Ohio,615,690,
-28th Ohio,615,688,
-28th Ohio,615,686,
-28th Ohio,615,684,
-28th Ohio,615,682,
-28th Ohio,615,680,
-28th Ohio,615,678,
-28th Ohio,615,676,
-28th Ohio,615,674,
-28th Ohio,615,672,
-28th Ohio,685,715,
-28th Ohio,686,714,
-28th Ohio,687,713,
-28th Ohio,688,712,
-28th Ohio,689,711,
-28th Ohio,690,710,
-28th Ohio,691,709,
-28th Ohio,692,708,
-28th Ohio,693,707,
-28th Ohio,694,706,
-9th New York,765,20,
-9th New York,766,21,
-9th New York,767,21,
-9th New York,768,22,
-9th New York,769,22,
-9th New York,770,23,
-9th New York,771,23,
-9th New York,772,24,
-9th New York,773,24,
-9th New York,774,25,
-9th New York,775,25,
-9th New York,776,26,
-9th New York,777,26,
-9th New York,778,27,
-9th New York,779,27,
-9th New York,780,28,
-9th New York,781,28,
-9th New York,782,29,
-9th New York,783,29,
-9th New York,784,30,
-103rd New York,795,35,
-103rd New York,796,35,
-103rd New York,797,36,
-103rd New York,798,36,
-103rd New York,799,37,
-103rd New York,800,37,
-103rd New York,801,38,
-103rd New York,802,38,
-103rd New York,803,39,
-103rd New York,804,39,
-103rd New York,805,40,
-103rd New York,806,40,
-103rd New York,807,41,
-103rd New York,808,41,
-103rd New York,809,42,
-103rd New York,810,42,
-103rd New York,811,43,
-103rd New York,812,43,
-103rd New York,813,44,
-103rd New York,814,44,
-89th New York,825,50,
-89th New York,826,51,
-89th New York,827,51,
-89th New York,828,52,
-89th New York,829,52,
-89th New York,830,53,
-89th New York,831,53,
-89th New York,832,54,
-89th New York,833,54,
-89th New York,834,55,
-89th New York,835,55,
-89th New York,836,56,
-89th New York,837,56,
-89th New York,838,57,
-89th New York,839,57,
-89th New York,840,58,
-89th New York,841,58,
-89th New York,842,59,
-89th New York,843,59,
-89th New York,844,60,
-Harland,890,90,
-Harland,891,91,
-Harland,892,92,
-Harland,893,93,
-Harland,894,94,
-Harland,895,95,
-Harland,896,96,
-Harland,897,97,
-Harland,898,98,
-Harland,899,99,
-Harland,900,100,
-Harland,901,101,
-Harland,902,102,
-Harland,903,103,
-Harland,904,104,
-Harland,905,105,
-Harland,906,106,
-Harland,907,107,
-Harland,908,108,
-Harland,909,109,
-Harland,895,85,
-Harland,896,86,
-Harland,897,87,
-Harland,898,88,
-Harland,899,89,
-Harland,900,90,
-Harland,901,91,
-Harland,902,92,
-Harland,903,93,
-Harland,904,94,
-Harland,905,95,
-Harland,906,96,
-Harland,907,97,
-Harland,908,98,
-Harland,909,99,
-Harland,910,100,
-Harland,911,101,
-Harland,912,102,
-Harland,913,103,
-Harland,914,104,
-Harland,900,80,
-Harland,901,81,
-Harland,902,82,
-Harland,903,83,
-Harland,904,84,
-Harland,905,85,
-Harland,906,86,
-Harland,907,87,
-Harland,908,88,
-Harland,909,89,
-Harland,910,90,
-Harland,911,91,
-Harland,912,92,
-Harland,913,93,
-Harland,914,94,
-Harland,915,95,
-Harland,916,96,
-Harland,917,97,
-Harland,918,98,
-Harland,919,99,
-12th Ohio,895,200,
-12th Ohio,896,201,
-12th Ohio,897,202,
-12th Ohio,898,203,
-12th Ohio,899,204,
-12th Ohio,900,205,
-12th Ohio,901,206,
-12th Ohio,902,207,
-12th Ohio,903,208,
-12th Ohio,904,209,
-12th Ohio,905,210,
-12th Ohio,906,211,
-12th Ohio,907,212,
-12th Ohio,908,213,
-12th Ohio,909,214,
-12th Ohio,910,215,
-12th Ohio,911,216,
-12th Ohio,912,217,
-12th Ohio,913,218,
-12th Ohio,914,219,
-23rd Ohio,900,195,
-23rd Ohio,901,196,
-23rd Ohio,902,197,
-23rd Ohio,903,198,
-23rd Ohio,904,199,
-23rd Ohio,905,200,
-23rd Ohio,906,201,
-23rd Ohio,907,202,
-23rd Ohio,908,203,
-23rd Ohio,909,204,
-23rd Ohio,910,205,
-23rd Ohio,911,206,
-23rd Ohio,912,207,
-23rd Ohio,913,208,
-23rd Ohio,914,209,
-23rd Ohio,915,210,
-23rd Ohio,916,211,
-23rd Ohio,917,212,
-23rd Ohio,918,213,
-23rd Ohio,919,214,
-30th Ohio,905,190,
-30th Ohio,906,191,
-30th Ohio,907,192,
-30th Ohio,908,193,
-30th Ohio,909,194,
-30th Ohio,910,195,
-30th Ohio,911,196,
-30th Ohio,912,197,
-30th Ohio,913,198,
-30th Ohio,914,199,
-30th Ohio,915,200,
-30th Ohio,916,201,
-30th Ohio,917,202,
-30th Ohio,918,203,
-30th Ohio,919,204,
-30th Ohio,920,205,
-30th Ohio,921,206,
-30th Ohio,922,207,
-30th Ohio,923,208,
-30th Ohio,924,209,
+Name,X-Coord,Y-Coord,GroupID
+11th Connecticut,765,675,0
+11th Connecticut,765,673,0
+11th Connecticut,764,671,0
+11th Connecticut,764,669,0
+11th Connecticut,763,667,0
+11th Connecticut,763,665,0
+11th Connecticut,762,663,0
+11th Connecticut,762,661,0
+11th Connecticut,761,659,0
+11th Connecticut,761,657,0
+11th Connecticut,760,655,0
+11th Connecticut,760,653,0
+11th Connecticut,759,651,0
+11th Connecticut,759,649,0
+11th Connecticut,758,647,0
+11th Connecticut,758,645,0
+11th Connecticut,757,643,0
+11th Connecticut,757,641,0
+11th Connecticut,756,639,0
+11th Connecticut,756,637,0
+36th Ohio,850,660,1
+36th Ohio,851,659,1
+36th Ohio,852,658,1
+36th Ohio,853,657,1
+36th Ohio,854,656,1
+36th Ohio,855,655,1
+36th Ohio,856,654,1
+36th Ohio,857,653,1
+36th Ohio,858,652,1
+36th Ohio,859,651,1
+36th Ohio,860,650,1
+36th Ohio,861,649,1
+36th Ohio,862,648,1
+36th Ohio,863,647,1
+36th Ohio,864,646,1
+36th Ohio,865,645,1
+36th Ohio,866,644,1
+36th Ohio,867,643,1
+36th Ohio,868,642,1
+36th Ohio,869,641,1
+11th Ohio,875,635,2
+11th Ohio,876,634,2
+11th Ohio,877,633,2
+11th Ohio,878,632,2
+11th Ohio,879,631,2
+11th Ohio,880,630,2
+11th Ohio,881,629,2
+11th Ohio,882,628,2
+11th Ohio,883,627,2
+11th Ohio,884,626,2
+11th Ohio,885,625,2
+11th Ohio,886,624,2
+11th Ohio,887,623,2
+11th Ohio,888,622,2
+11th Ohio,889,621,2
+11th Ohio,890,620,2
+11th Ohio,891,619,2
+11th Ohio,892,618,2
+11th Ohio,893,617,2
+11th Ohio,894,616,2
+2nd Maryland,745,589,3
+2nd Maryland,745,587,3
+2nd Maryland,744,585,3
+2nd Maryland,744,583,3
+2nd Maryland,743,581,3
+2nd Maryland,743,579,3
+2nd Maryland,742,577,3
+2nd Maryland,742,575,3
+2nd Maryland,741,573,3
+2nd Maryland,741,571,3
+2nd Maryland,740,569,3
+2nd Maryland,740,567,3
+2nd Maryland,739,565,3
+2nd Maryland,739,563,3
+2nd Maryland,738,561,3
+2nd Maryland,738,559,3
+2nd Maryland,737,557,3
+2nd Maryland,737,555,3
+2nd Maryland,736,553,3
+2nd Maryland,736,551,3
+6th New Hampshire,685,600,4
+6th New Hampshire,686,599,4
+6th New Hampshire,687,598,4
+6th New Hampshire,688,597,4
+6th New Hampshire,689,596,4
+6th New Hampshire,690,595,4
+6th New Hampshire,691,594,4
+6th New Hampshire,692,593,4
+6th New Hampshire,693,592,4
+6th New Hampshire,694,591,4
+6th New Hampshire,695,590,4
+6th New Hampshire,696,589,4
+6th New Hampshire,697,588,4
+6th New Hampshire,698,587,4
+6th New Hampshire,699,586,4
+6th New Hampshire,700,585,4
+6th New Hampshire,701,584,4
+6th New Hampshire,702,583,4
+6th New Hampshire,703,582,4
+6th New Hampshire,704,581,4
+51st New York,885,535,5
+51st New York,886,536,5
+51st New York,887,537,5
+51st New York,888,538,5
+51st New York,889,539,5
+51st New York,890,540,5
+51st New York,891,541,5
+51st New York,892,542,5
+51st New York,893,543,5
+51st New York,894,544,5
+51st New York,895,545,5
+51st New York,896,546,5
+51st New York,897,547,5
+51st New York,898,548,5
+51st New York,899,549,5
+51st New York,900,550,5
+51st New York,901,551,5
+51st New York,902,552,5
+51st New York,903,553,5
+51st New York,904,554,5
+51st Pennsylvania,860,510,6
+51st Pennsylvania,861,511,6
+51st Pennsylvania,862,512,6
+51st Pennsylvania,863,513,6
+51st Pennsylvania,864,514,6
+51st Pennsylvania,865,515,6
+51st Pennsylvania,866,516,6
+51st Pennsylvania,867,517,6
+51st Pennsylvania,868,518,6
+51st Pennsylvania,869,519,6
+51st Pennsylvania,870,520,6
+51st Pennsylvania,871,521,6
+51st Pennsylvania,872,522,6
+51st Pennsylvania,873,523,6
+51st Pennsylvania,874,524,6
+51st Pennsylvania,875,525,6
+51st Pennsylvania,876,526,6
+51st Pennsylvania,877,527,6
+51st Pennsylvania,878,528,6
+51st Pennsylvania,879,529,6
+35th Massachusetts,800,485,7
+35th Massachusetts,801,484,7
+35th Massachusetts,802,483,7
+35th Massachusetts,803,482,7
+35th Massachusetts,804,481,7
+35th Massachusetts,805,480,7
+35th Massachusetts,806,479,7
+35th Massachusetts,807,478,7
+35th Massachusetts,808,477,7
+35th Massachusetts,809,476,7
+35th Massachusetts,810,475,7
+35th Massachusetts,811,474,7
+35th Massachusetts,812,473,7
+35th Massachusetts,813,472,7
+35th Massachusetts,814,471,7
+35th Massachusetts,815,470,7
+35th Massachusetts,816,469,7
+35th Massachusetts,817,468,7
+35th Massachusetts,818,467,7
+35th Massachusetts,819,466,7
+21st Massachusetts,835,485,8
+21st Massachusetts,836,486,8
+21st Massachusetts,837,487,8
+21st Massachusetts,838,488,8
+21st Massachusetts,839,489,8
+21st Massachusetts,840,490,8
+21st Massachusetts,841,491,8
+21st Massachusetts,842,492,8
+21st Massachusetts,843,493,8
+21st Massachusetts,844,494,8
+21st Massachusetts,845,495,8
+21st Massachusetts,846,496,8
+21st Massachusetts,847,497,8
+21st Massachusetts,848,498,8
+21st Massachusetts,849,499,8
+21st Massachusetts,850,500,8
+21st Massachusetts,851,501,8
+21st Massachusetts,852,502,8
+21st Massachusetts,853,503,8
+21st Massachusetts,854,504,8
+12th Ohio,895,200,9
+12th Ohio,896,201,9
+12th Ohio,897,202,9
+12th Ohio,898,203,9
+12th Ohio,899,204,9
+12th Ohio,900,205,9
+12th Ohio,901,206,9
+12th Ohio,902,207,9
+12th Ohio,903,208,9
+12th Ohio,904,209,9
+12th Ohio,905,210,9
+12th Ohio,906,211,9
+12th Ohio,907,212,9
+12th Ohio,908,213,9
+12th Ohio,909,214,9
+12th Ohio,910,215,9
+12th Ohio,911,216,9
+12th Ohio,912,217,9
+12th Ohio,913,218,9
+12th Ohio,914,219,9
+23rd Ohio,900,195,10
+23rd Ohio,901,196,10
+23rd Ohio,902,197,10
+23rd Ohio,903,198,10
+23rd Ohio,904,199,10
+23rd Ohio,905,200,10
+23rd Ohio,906,201,10
+23rd Ohio,907,202,10
+23rd Ohio,908,203,10
+23rd Ohio,909,204,10
+23rd Ohio,910,205,10
+23rd Ohio,911,206,10
+23rd Ohio,912,207,10
+23rd Ohio,913,208,10
+23rd Ohio,914,209,10
+23rd Ohio,915,210,10
+23rd Ohio,916,211,10
+23rd Ohio,917,212,10
+23rd Ohio,918,213,10
+23rd Ohio,919,214,10
+30th Ohio,905,190,11
+30th Ohio,906,191,11
+30th Ohio,907,192,11
+30th Ohio,908,193,11
+30th Ohio,909,194,11
+30th Ohio,910,195,11
+30th Ohio,911,196,11
+30th Ohio,912,197,11
+30th Ohio,913,198,11
+30th Ohio,914,199,11
+30th Ohio,915,200,11
+30th Ohio,916,201,11
+30th Ohio,917,202,11
+30th Ohio,918,203,11
+30th Ohio,919,204,11
+30th Ohio,920,205,11
+30th Ohio,921,206,11
+30th Ohio,922,207,11
+30th Ohio,923,208,11
+30th Ohio,924,209,11
+9th New York,765,20,12
+9th New York,766,21,12
+9th New York,767,21,12
+9th New York,768,22,12
+9th New York,769,22,12
+9th New York,770,23,12
+9th New York,771,23,12
+9th New York,772,24,12
+9th New York,773,24,12
+9th New York,774,25,12
+9th New York,775,25,12
+9th New York,776,26,12
+9th New York,777,26,12
+9th New York,778,27,12
+9th New York,779,27,12
+9th New York,780,28,12
+9th New York,781,28,12
+9th New York,782,29,12
+9th New York,783,29,12
+9th New York,784,30,12
+103rd New York,795,35,13
+103rd New York,796,35,13
+103rd New York,797,36,13
+103rd New York,798,36,13
+103rd New York,799,37,13
+103rd New York,800,37,13
+103rd New York,801,38,13
+103rd New York,802,38,13
+103rd New York,803,39,13
+103rd New York,804,39,13
+103rd New York,805,40,13
+103rd New York,806,40,13
+103rd New York,807,41,13
+103rd New York,808,41,13
+103rd New York,809,42,13
+103rd New York,810,42,13
+103rd New York,811,43,13
+103rd New York,812,43,13
+103rd New York,813,44,13
+103rd New York,814,44,13
+89th New York,825,50,14
+89th New York,826,51,14
+89th New York,827,51,14
+89th New York,828,52,14
+89th New York,829,52,14
+89th New York,830,53,14
+89th New York,831,53,14
+89th New York,832,54,14
+89th New York,833,54,14
+89th New York,834,55,14
+89th New York,835,55,14
+89th New York,836,56,14
+89th New York,837,56,14
+89th New York,838,57,14
+89th New York,839,57,14
+89th New York,840,58,14
+89th New York,841,58,14
+89th New York,842,59,14
+89th New York,843,59,14
+89th New York,844,60,14
+9th New Hampshire,755,632,20
+9th New Hampshire,755,630,20
+9th New Hampshire,754,628,20
+9th New Hampshire,754,626,20
+9th New Hampshire,753,624,20
+9th New Hampshire,753,622,20
+9th New Hampshire,752,620,20
+9th New Hampshire,752,618,20
+9th New Hampshire,751,616,20
+9th New Hampshire,751,614,20
+9th New Hampshire,750,612,20
+9th New Hampshire,750,610,20
+9th New Hampshire,749,608,20
+9th New Hampshire,749,606,20
+9th New Hampshire,748,604,20
+9th New Hampshire,748,602,20
+9th New Hampshire,747,600,20
+9th New Hampshire,747,598,20
+9th New Hampshire,746,596,20
+9th New Hampshire,746,594,20
+48th Pennsylvania,681,654,20
+48th Pennsylvania,682,653,20
+48th Pennsylvania,683,652,20
+48th Pennsylvania,684,651,20
+48th Pennsylvania,685,650,20
+48th Pennsylvania,686,649,20
+48th Pennsylvania,687,648,20
+48th Pennsylvania,688,647,20
+48th Pennsylvania,689,646,20
+48th Pennsylvania,690,645,20
+48th Pennsylvania,691,644,20
+48th Pennsylvania,692,643,20
+48th Pennsylvania,693,642,20
+48th Pennsylvania,694,641,20
+48th Pennsylvania,695,640,20
+48th Pennsylvania,696,639,20
+48th Pennsylvania,697,638,20
+48th Pennsylvania,698,637,20
+48th Pennsylvania,699,636,20
+48th Pennsylvania,700,635,20
+28th Ohio,615,690,20
+28th Ohio,615,688,20
+28th Ohio,615,686,20
+28th Ohio,615,684,20
+28th Ohio,615,682,20
+28th Ohio,615,680,20
+28th Ohio,615,678,20
+28th Ohio,615,676,20
+28th Ohio,615,674,20
+28th Ohio,615,672,20
+28th Ohio,685,715,20
+28th Ohio,686,714,20
+28th Ohio,687,713,20
+28th Ohio,688,712,20
+28th Ohio,689,711,20
+28th Ohio,690,710,20
+28th Ohio,691,709,20
+28th Ohio,692,708,20
+28th Ohio,693,707,20
+28th Ohio,694,706,20
+Harland,890,90,20
+Harland,891,91,20
+Harland,892,92,20
+Harland,893,93,20
+Harland,894,94,20
+Harland,895,95,20
+Harland,896,96,20
+Harland,897,97,20
+Harland,898,98,20
+Harland,899,99,20
+Harland,900,100,20
+Harland,901,101,20
+Harland,902,102,20
+Harland,903,103,20
+Harland,904,104,20
+Harland,905,105,20
+Harland,906,106,20
+Harland,907,107,20
+Harland,908,108,20
+Harland,909,109,20
+Harland,895,85,20
+Harland,896,86,20
+Harland,897,87,20
+Harland,898,88,20
+Harland,899,89,20
+Harland,900,90,20
+Harland,901,91,20
+Harland,902,92,20
+Harland,903,93,20
+Harland,904,94,20
+Harland,905,95,20
+Harland,906,96,20
+Harland,907,97,20
+Harland,908,98,20
+Harland,909,99,20
+Harland,910,100,20
+Harland,911,101,20
+Harland,912,102,20
+Harland,913,103,20
+Harland,914,104,20
+Harland,900,80,20
+Harland,901,81,20
+Harland,902,82,20
+Harland,903,83,20
+Harland,904,84,20
+Harland,905,85,20
+Harland,906,86,20
+Harland,907,87,20
+Harland,908,88,20
+Harland,909,89,20
+Harland,910,90,20
+Harland,911,91,20
+Harland,912,92,20
+Harland,913,93,20
+Harland,914,94,20
+Harland,915,95,20
+Harland,916,96,20
+Harland,917,97,20
+Harland,918,98,20
+Harland,919,99,20
