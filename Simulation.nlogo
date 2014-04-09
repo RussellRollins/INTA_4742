@@ -11,13 +11,13 @@ breed [confederateArtilleryUnits confederateArtilleryUnit]            ;;confeder
 
 ;;give the turtles their attributes
 turtles-own [allegiance destinationOne destinationTwo destinationThree]                                              ;;specifies union or confederate
-patches-own [isDestinationOne isDestinationTwo isDestinationThree]
+patches-own [isDestinationOne isDestinationTwo isDestinationThree isWater]
 unionRegiments-own [areCrossing haveCrossed]
 
 ;;give the patches their attributes
 
 ;;set globals
-globals [destinationOnes destinationTwos destinationThrees initDir groupSelected]
+globals [destinationOnes destinationTwos destinationThrees initDir]
 
 ;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; Setup Procedures ;;;
@@ -27,7 +27,6 @@ globals [destinationOnes destinationTwos destinationThrees initDir groupSelected
 to setup
   clear-all
   draw-map
-  set groupSelected 4
   create-destinations
   create-armies
   set-destinations         
@@ -37,10 +36,11 @@ end
 ;;draw the map
 to draw-map
   cp ct                                                               ;;cp(clear patches) cd(clear drawing)
+  import-pcolors "AntietamFinal.jpg" 
   ask patches [set isDestinationOne False]
   ask patches [set isDestinationTwo False]
   ask patches [set isDestinationThree False]
-  import-pcolors "AntietamFinal.jpg"                                  ;;import background map
+  ask patches [ifelse (pcolor < 97.5 and pcolor > 96.5) [set isWater true] [set isWater false]]
 end
 
 ;;initialize the various turtles
@@ -54,8 +54,7 @@ end
 to set-destinations
   ask turtles 
   [
-    set destinationOne one-of destinationOnes
-    set destinationTwo one-of destinationTwos
+    set destinationOne one-of destinationOnes    
     set destinationThree one-of destinationThrees
   ]
 end
@@ -111,6 +110,7 @@ to move
     [
       if [isDestinationOne] of patch-here
       [
+        set destinationTwo min-one-of destinationTwos [distance myself]
         set areCrossing True
       ]
       set currDestination destinationOne
@@ -118,6 +118,9 @@ to move
   ]
   if [isDestinationThree] of patch-here
     [die]
+    
+  ;;if [isWater] of patch-here
+  ;;  [die]
     
   face currDestination
   
@@ -142,18 +145,39 @@ to move
   ]
   ;;if there is not a turtle in front of you, go
   [
-    fd 1
+    ifelse [isWater] of patch-ahead 1
+    [
+      ifelse areCrossing
+      [
+        fd 1 
+      ]
+      [
+        rt random 90
+        ifelse [not isWater] of patch-ahead 1
+          [fd 1]
+          [
+            face currDestination
+            rt -1 * random 90
+            ifelse [not isWater] of patch-ahead 1
+              [fd 1]
+              [face currDestination fd -1]
+          ]
+      ]
+    ]
+    [
+      fd 1
+    ]
   ]
 end
 @#$#@#$#@
 GRAPHICS-WINDOW
-430
-33
-2872
-1832
+284
+15
+1510
+930
 -1
 -1
-2.0
+1.0
 1
 10
 1
@@ -241,6 +265,16 @@ false
 "" ""
 PENS
 "default" 1.0 0 -16777216 true "" "plot count turtles"
+
+CHOOSER
+24
+75
+162
+120
+groupSelected
+groupSelected
+0 1 2 3 4 5
+5
 
 @#$#@#$#@
 ## WHAT IS IT?
