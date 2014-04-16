@@ -20,7 +20,7 @@ to create-ui
     set soldierInfo array:from-list soldierInfo                       ;;convert into an array
     set xPos array:item soldierInfo 0
     set yPos array:item soldierInfo 1     
-    create-unionRegiments 20                                        ;;create a turtle from this line
+    create-unionRegiments 5                                        ;;create a turtle from this line
        [
          setxy xPos yPos
          set color blue
@@ -28,7 +28,8 @@ to create-ui
          set size 4
          set allegiance "Union"
          set areCrossing False
-         set haveCrossed False                  
+         set haveCrossed False
+         set myExhaustion 0                  
        ]
     set soldierInfo []                                                ;;reset information
   ]
@@ -82,13 +83,14 @@ to create-ci
     set soldierInfo array:from-list soldierInfo
     set xPos array:item soldierInfo 0
     set yPos array:item soldierInfo 1     
-    create-confederateRegiments 20
+    create-confederateRegiments 5
        [
          setxy xPos yPos
          set color red
          set shape "circle"
          set size 4
-         set allegiance "Confederate"                   
+         set allegiance "Confederate"
+         set waiter 0                   
        ]
     set soldierInfo [] 
   ]
@@ -119,7 +121,8 @@ to create-ca
          set shape "rebelarty"
          set size 15
          set heading initDir
-         set allegiance "Confederate"                  
+         set allegiance "Confederate"
+         set waiter 0                  
        ]
     set soldierInfo [] 
   ]

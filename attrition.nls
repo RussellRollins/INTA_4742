@@ -1,0 +1,45 @@
+to rifle-attack
+  ;;site the nearest enemy turtle
+
+  let enemy closestHostile self
+  let seperation distance closestHostile self
+  ;;if they are in range
+  if seperation < 100 ;;XXX arbitrary number
+  [
+    ifelse waiter = rifleFreq
+    [
+      ;;kill them with some probability
+      let rand random 1000
+      print rand
+      if rand < 30 [ask enemy [die]]
+      set waiter 0
+    ]
+    [
+      set waiter waiter + 1 
+    ]
+  ]
+end
+
+to artillery-attack
+  ;;site the nearest enemy turtle
+  let enemy closestHostile self
+  let seperation distance closestHostile self
+  ;;if they are in range
+  if seperation < 100 ;;XXX arbitrary number
+  [
+    ifelse waiter = artilleryFreq
+    [
+      ;;get their neighbors
+      let enemies turtlesInRange enemy 10 ;; arbitrary number
+      let rand 0
+      ;;kill them and their neighbors with some probability
+      ask enemy [set rand random 1000 if rand < 30 [die]]
+      ask enemies [set rand random 1000 if rand < 30 [die]]
+      set waiter 0            
+    ]
+    [
+      set waiter waiter + 1 
+    ]
+  ]
+   
+end

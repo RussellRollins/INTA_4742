@@ -1,0 +1,7 @@
+to gain-exhaustion [terrain travel]
+  let terrainFactor 0
+  if terrain = 0 [set terrainFactor normalTerrainExhaustion]
+  if terrain = 1 [set terrainFactor forestTerrainExhaustion]
+  if terrain = 2 [set terrainFactor waterTerrainExhaustion]
+  set myExhaustion myExhaustion + (globalExhaustionConstant * terrainFactor)
+end

@@ -1,0 +1,45 @@
+
+  ;;avoid bunching
+  ;;how am i going to do this.
+  ;;check if there is a turtle in front of you
+  ifelse any? [turtles-here with [allegiance = "Union"]] of patch-ahead forwardMove
+  ;;if there is a turtle in front of you, try to avoid
+  [
+    ;;new plan "look" right, then "look" left. go in an empty direction, otherwise, don't move.
+    rt random 90
+    ifelse any? [turtles-here with [allegiance = "Union"]] of patch-ahead adjustmentMove and ((not [isWater] of patch-ahead adjustmentMove) or areCrossing)
+      [fd adjustmentMove]
+      [
+        face currDestination
+        rt -1 * random 90
+        ifelse any? [turtles-here with [allegiance = "Union"]] of patch-ahead adjustmentMove and ((not [isWater] of patch-ahead adjustmentMove) or areCrossing)
+          [fd adjustmentMove]
+          [face currDestination rt 180 if (not [isWater] of patch-ahead adjustmentMove) or areCrossing [fd adjustmentMove]]
+      ]
+     
+  ]
+  ;;if there is not a turtle in front of you, go
+  [
+    ifelse [isWater] of patch-ahead forwardMove
+    [
+      ifelse areCrossing
+      [
+        fd forwardMove 
+      ]
+      [
+        rt random 90
+        ifelse [not isWater] of patch-ahead adjustmentMove
+          [fd 1]
+          [
+            face currDestination
+            rt -1 * random 90
+            ifelse [not isWater] of patch-ahead adjustmentMove
+              [fd adjustmentMove]
+              [face currDestination fd -1 * adjustmentMove]
+          ]
+      ]
+    ]
+    [
+      fd forwardMove
+    ]
+  ]

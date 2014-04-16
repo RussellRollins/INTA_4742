@@ -1,4 +1,4 @@
-__includes ["setupArmies.nls" "setupPatches.nls" "reporters.nls"]
+__includes ["setupArmies.nls" "setupPatches.nls" "reporters.nls" "attrition.nls" "exhaustion.nls"]
 
 ;;include extensions
 extensions [array]
@@ -10,8 +10,8 @@ breed [unionArtilleryUnits unionArtilleryUnit]                        ;;union ar
 breed [confederateArtilleryUnits confederateArtilleryUnit]            ;;confederate artillery units
 
 ;;give the turtles their attributes
-turtles-own [allegiance destinationOne destinationTwo destinationThree]                                              ;;specifies union or confederate
-patches-own [isDestinationOne isDestinationTwo isDestinationThree isWater]
+turtles-own [allegiance destinationOne destinationTwo destinationThree myExhaustion]                                              ;;specifies union or confederate
+patches-own [isDestinationOne isDestinationTwo isDestinationThree isWater isForest waiter]
 unionRegiments-own [areCrossing haveCrossed]
 
 ;;give the patches their attributes
@@ -41,14 +41,15 @@ to draw-map
   ask patches [set isDestinationTwo False]
   ask patches [set isDestinationThree False]
   ask patches [ifelse (pcolor < 97.5 and pcolor > 96.5) [set isWater true] [set isWater false]]
+  ask patches [ifelse (pcolor < 47.5 and pcolor > 37.5) [set isForest true] [set isForest false]]
 end
 
 ;;initialize the various turtles
 to create-armies
   create-ui                                                           ;;union infantry
   create-ua                                                           ;;union artillery
-  ;;create-ci                                                           ;;confederate infantry
-  ;;create-ca                                                           ;;confederate artillery
+  create-ci                                                           ;;confederate infantry
+  create-ca                                                           ;;confederate artillery
 end
 
 to set-destinations
@@ -65,20 +66,15 @@ end
 
 to go
   ask unionRegiments [
-    move
-    
+    move    
   ]
   
   ask confederateRegiments [
-    
-  ]
-  
-  ask unionArtilleryUnits [
-    
-  ]
+    rifle-attack
+  ]  
   
   ask confederateArtilleryUnits [
-    
+    artillery-attack
   ]
   
   tick
@@ -89,8 +85,7 @@ end
 ;;;;;;;;;;;;;;;;;;;;;;;;;
 
 to move
-  ;;face destination
-  ;;for now, hardcoded
+  
   let currDestination []
   ifelse areCrossing
   [
@@ -118,56 +113,63 @@ to move
   ]
   if [isDestinationThree] of patch-here
     [die]
-    
-  ;;if [isWater] of patch-here
-  ;;  [die]
-    
+        
+  ;;set heading
   face currDestination
+  let forwardOccupied false
+  let forwardWater false
+  let leftOccupied false
+  let leftWater false
+  let rightOccupied false
+  let rightWater false
+  let backOccupied false
+  let backWater false
   
-  ;;avoid bunching
-  ;;how am i going to do this.
-  ;;check if there is a turtle in front of you
-  ifelse any? [turtles-here] of patch-ahead 1
-  ;;if there is a turtle in front of you, try to avoid
-  [
-    ;;new plan "look" right, then "look" left. go in an empty direction, otherwise, don't move.
-    rt random 90
-    ifelse any? [turtles-here] of patch-ahead 1
-      [fd 0.1]
-      [
-        face currDestination
-        rt -1 * random 90
-        ifelse any? [turtles-here] of patch-ahead 1
-          [fd 0.1]
-          [face currDestination fd -0.1]
-      ]
+  ;;set terrain 0 = normal, 1 = forest, 2 = water
+  let terrain 0
+  if [isWater] of patch-here [set terrain 2]
+  if [isForest] of patch-here [set terrain 1]
+  
+  ;;set distance
+  let travel 0
+  
+  let terrainMod terrain-modifier terrain
+  
+  if any? [turtles-here with [allegiance = "Union"]] of patch-ahead (forwardMove * terrainMod)
+    [set forwardOccupied true]
+  
+  if [isWater] of patch-ahead (forwardMove * terrainMod)
+    [set forwardOccupied true]
     
-  ]
-  ;;if there is not a turtle in front of you, go
-  [
-    ifelse [isWater] of patch-ahead 1
-    [
-      ifelse areCrossing
-      [
-        fd 1 
-      ]
-      [
-        rt random 90
-        ifelse [not isWater] of patch-ahead 1
-          [fd 1]
-          [
-            face currDestination
-            rt -1 * random 90
-            ifelse [not isWater] of patch-ahead 1
-              [fd 1]
-              [face currDestination fd -1]
-          ]
-      ]
-    ]
-    [
-      fd 1
-    ]
-  ]
+  if any? [turtles-here with [allegiance = "Union"]] of patch-right-and-ahead 90 (adjustmentMove * terrainMod)
+    [set rightOccupied true]
+    
+  if [isWater] of patch-right-and-ahead 90 (adjustmentMove * terrainMod)
+    [set rightWater true]
+    
+  if any? [turtles-here with [allegiance = "Union"]] of patch-left-and-ahead 90 (adjustmentMove * terrainMod)
+    [set leftOccupied true]
+    
+  if [isWater] of patch-left-and-ahead 90 (adjustmentMove * terrainMod)
+    [set leftWater true]
+    
+  if any? [turtles-here with [allegiance = "Union"]] of patch-ahead (adjustmentMove * terrainMod * -1)
+    [set backOccupied true]
+    
+  if [isWater] of patch-ahead (adjustmentMove * terrainMod * -1)
+    [set backWater true]
+    
+  if not forwardOccupied and (not forwardWater or areCrossing)
+    [set travel forwardMove]            
+  
+  ;;move forward
+  fd travel
+  
+  ;;gain exhaustion
+  gain-exhaustion terrain travel
+  
+  
+  
 end
 @#$#@#$#@
 GRAPHICS-WINDOW
@@ -177,7 +179,7 @@ GRAPHICS-WINDOW
 930
 -1
 -1
-1.0
+0.75
 1
 10
 1
@@ -191,8 +193,8 @@ GRAPHICS-WINDOW
 1215
 0
 883
-1
-1
+0
+0
 1
 ticks
 30.0
@@ -248,33 +250,165 @@ NIL
 NIL
 1
 
-PLOT
-21
-283
-221
-433
-plot 1
-NIL
-NIL
-0.0
-10.0
-0.0
-10.0
-true
-false
-"" ""
-PENS
-"default" 1.0 0 -16777216 true "" "plot count turtles"
-
 CHOOSER
-24
-75
-162
-120
+10
+50
+148
+95
 groupSelected
 groupSelected
 0 1 2 3 4 5
+2
+
+SLIDER
+10
+99
+182
+132
+forwardMove
+forwardMove
+0.1
+10
+1
+0.1
+1
+NIL
+HORIZONTAL
+
+SLIDER
+10
+137
+190
+170
+adjustmentMove
+adjustmentMove
+0
 5
+0.9
+0.05
+1
+NIL
+HORIZONTAL
+
+SLIDER
+10
+174
+256
+207
+globalExhaustionConstant
+globalExhaustionConstant
+0
+10000
+476
+1
+1
+NIL
+HORIZONTAL
+
+SLIDER
+10
+210
+242
+243
+normalTerrainExhaustion
+normalTerrainExhaustion
+0
+5
+1.9
+0.1
+1
+NIL
+HORIZONTAL
+
+SLIDER
+10
+246
+242
+279
+waterTerrainExhaustion
+waterTerrainExhaustion
+0
+10
+4
+0.1
+1
+NIL
+HORIZONTAL
+
+SLIDER
+10
+282
+239
+315
+forestTerrainExhaustion
+forestTerrainExhaustion
+0
+5
+5
+0.1
+1
+NIL
+HORIZONTAL
+
+SLIDER
+10
+319
+182
+352
+rifleFreq
+rifleFreq
+0
+100
+44
+1
+1
+NIL
+HORIZONTAL
+
+SLIDER
+10
+355
+182
+388
+artilleryFreq
+artilleryFreq
+0
+100
+50
+1
+1
+NIL
+HORIZONTAL
+
+SLIDER
+11
+392
+183
+425
+forestMoveMod
+forestMoveMod
+0
+1
+0.8
+0.1
+1
+NIL
+HORIZONTAL
+
+SLIDER
+11
+428
+183
+461
+waterMoveMod
+waterMoveMod
+0
+1
+0.2
+0.1
+1
+NIL
+HORIZONTAL
 
 @#$#@#$#@
 ## WHAT IS IT?

@@ -28,3 +28,13 @@ to-report csv-split [csvLine]
   ]
   report (word "[ " csvLine " ]")                                     ;;surround with brackets and return
 end
+
+to-report turtlesInRange [range thisTurtle]
+  report turtles with [distance thisTurtle < range]
+end
+
+to-report terrain-modifier [terrain]
+  if terrain = 0 [report 1]
+  if terrain = 1 [report forestMoveMod]
+  if terrain = 2 [report waterMoveMod]
+end
