@@ -20,7 +20,7 @@ to create-ui
     set soldierInfo array:from-list soldierInfo                       ;;convert into an array
     set xPos array:item soldierInfo 0
     set yPos array:item soldierInfo 1     
-    create-unionRegiments 5                                        ;;create a turtle from this line
+    create-unionRegiments 1                                        ;;create a turtle from this line
        [
          setxy xPos yPos
          set color blue
@@ -53,7 +53,7 @@ to create-ua
     set xPos array:item soldierInfo 0
     set yPos array:item soldierInfo 1  
     set initDir array:item soldierInfo 2   
-    create-unionArtilleryUnits 1
+    create-unionArtilleryUnits 2
        [
          setxy xPos yPos
          set color blue
@@ -83,7 +83,7 @@ to create-ci
     set soldierInfo array:from-list soldierInfo
     set xPos array:item soldierInfo 0
     set yPos array:item soldierInfo 1     
-    create-confederateRegiments 5
+    create-confederateRegiments 2
        [
          setxy xPos yPos
          set color red
@@ -114,7 +114,7 @@ to create-ca
     set xPos array:item soldierInfo 0
     set yPos array:item soldierInfo 1 
     set initDir array:item soldierInfo 2     
-    create-confederateArtilleryUnits 1
+    create-confederateArtilleryUnits 2
        [
          setxy xPos yPos
          set color red

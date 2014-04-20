@@ -38,3 +38,9 @@ to-report terrain-modifier [terrain]
   if terrain = 1 [report forestMoveMod]
   if terrain = 2 [report waterMoveMod]
 end
+
+to-report feet-to-patches [feet]
+  ;;the map is 9,675 feet across
+  ;;the model is 1215 patches across
+  report feet * (1215 / 9675)
+end

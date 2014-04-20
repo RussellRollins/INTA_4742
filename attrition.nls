@@ -4,7 +4,7 @@ to rifle-attack
   let enemy closestHostile self
   let seperation distance closestHostile self
   ;;if they are in range
-  if seperation < 100 ;;XXX arbitrary number
+  if seperation < feet-to-patches maxRifleRange
   [
     ifelse waiter = rifleFreq
     [
@@ -25,12 +25,12 @@ to artillery-attack
   let enemy closestHostile self
   let seperation distance closestHostile self
   ;;if they are in range
-  if seperation < 100 ;;XXX arbitrary number
+  if (seperation < feet-to-patches maxArtilleryRange)
   [
     ifelse waiter = artilleryFreq
     [
       ;;get their neighbors
-      let enemies turtlesInRange enemy 10 ;; arbitrary number
+      let enemies turtlesInRange 10 enemy;; arbitrary number
       let rand 0
       ;;kill them and their neighbors with some probability
       ask enemy [set rand random 1000 if rand < 30 [die]]

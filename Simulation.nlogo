@@ -10,14 +10,14 @@ breed [unionArtilleryUnits unionArtilleryUnit]                        ;;union ar
 breed [confederateArtilleryUnits confederateArtilleryUnit]            ;;confederate artillery units
 
 ;;give the turtles their attributes
-turtles-own [allegiance destinationOne destinationTwo destinationThree myExhaustion]                                              ;;specifies union or confederate
-patches-own [isDestinationOne isDestinationTwo isDestinationThree isWater isForest waiter]
+turtles-own [allegiance destinationOne destinationTwo destinationThree myExhaustion waiter]                                              ;;specifies union or confederate
+patches-own [isDestinationOne isDestinationTwo isDestinationThree isWater isForest]
 unionRegiments-own [areCrossing haveCrossed]
 
 ;;give the patches their attributes
 
 ;;set globals
-globals [destinationOnes destinationTwos destinationThrees initDir]
+globals [destinationOnes destinationTwos destinationThrees maxArtilleryRange maxRifleRange initDir]
 
 ;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; Setup Procedures ;;;
@@ -26,6 +26,8 @@ globals [destinationOnes destinationTwos destinationThrees initDir]
 ;;primary setup function
 to setup
   clear-all
+  set maxArtilleryRange 3000  ;;Artillery Range is Here
+  set maxRifleRange 300       ;;Rifle Range is Here
   draw-map
   create-destinations
   create-armies
@@ -48,8 +50,8 @@ end
 to create-armies
   create-ui                                                           ;;union infantry
   create-ua                                                           ;;union artillery
-  create-ci                                                           ;;confederate infantry
-  create-ca                                                           ;;confederate artillery
+  ;;create-ci                                                           ;;confederate infantry
+  ;;create-ca                                                           ;;confederate artillery
 end
 
 to set-destinations
@@ -116,6 +118,8 @@ to move
         
   ;;set heading
   face currDestination
+  let hereOccupied false
+  let hereWater false
   let forwardOccupied false
   let forwardWater false
   let leftOccupied false
@@ -135,38 +139,85 @@ to move
   
   let terrainMod terrain-modifier terrain
   
-  if any? [turtles-here with [allegiance = "Union"]] of patch-ahead (forwardMove * terrainMod)
+;;  if any? [turtles-here with [allegiance = "Union"]] of patch-ahead (forwardMove * terrainMod)
+;;    [set forwardOccupied true]
+
+  let myPatch patch-here
+  let turtlesAhead turtles in-cone ceiling (forwardMove * terrainMod) 20
+  let patchesAhead patches in-cone 2 20
+  let currentTurtle self
+  
+  if any? [turtles-here with [allegiance = "Union" and not (self = currentTurtle)]] of patch-here
+    [set hereOccupied true]
+
+  if [isWater] of patch-here
+    [set hereWater true]      
+
+  if any? turtlesAhead with [allegiance = "Union" and not (patch-here = myPatch)]
     [set forwardOccupied true]
   
-  if [isWater] of patch-ahead (forwardMove * terrainMod)
-    [set forwardOccupied true]
-    
-  if any? [turtles-here with [allegiance = "Union"]] of patch-right-and-ahead 90 (adjustmentMove * terrainMod)
-    [set rightOccupied true]
-    
-  if [isWater] of patch-right-and-ahead 90 (adjustmentMove * terrainMod)
-    [set rightWater true]
-    
-  if any? [turtles-here with [allegiance = "Union"]] of patch-left-and-ahead 90 (adjustmentMove * terrainMod)
-    [set leftOccupied true]
-    
-  if [isWater] of patch-left-and-ahead 90 (adjustmentMove * terrainMod)
-    [set leftWater true]
-    
-  if any? [turtles-here with [allegiance = "Union"]] of patch-ahead (adjustmentMove * terrainMod * -1)
-    [set backOccupied true]
-    
-  if [isWater] of patch-ahead (adjustmentMove * terrainMod * -1)
-    [set backWater true]
-    
-  if not forwardOccupied and (not forwardWater or areCrossing)
-    [set travel forwardMove]            
-  
-  ;;move forward
-  fd travel
-  
+  if any? patchesAhead with [isWater]  
+    [set forwardWater true]
+           
   ;;gain exhaustion
   gain-exhaustion terrain travel
+  
+  ;;the various move conditions
+  
+  ;;starting move
+  if hereOccupied
+  [
+    rt random -90 + random 180
+    fd 1
+    stop
+  ]
+  
+  ;;unobstructed move
+  if (not forwardOccupied) and ((not forwardWater) or areCrossing)
+  [
+    ifelse (distance currDestination) < (forwardMove * terrainMod)
+      [fd (distance currDestination)]
+      [fd forwardMove * terrainMod]
+    stop
+  ]
+  
+  if forwardWater and not haveCrossed
+  [
+    facexy 1210 412
+    fd forwardMove * terrainMod
+    stop  
+  ]
+  
+  if forwardWater
+  [
+    facexy 0 495
+    fd forwardMove * terrainMod
+    stop
+  ]
+  ;;a right shift move
+  ;;if not rightOccupied and (not rightWater or areCrossing)
+  ;;[
+  ;;  rt 90
+  ;;  fd -1 * adjustmentMove * terrainMod
+  ;;  stop 
+  ;;]
+  
+  ;;a left shift move
+  ;;if not leftOccupied and (not leftWater or areCrossing)
+  ;;[
+  ;;  rt -90
+  ;;  fd adjustmentMove * terrainMod
+  ;;  stop    
+  ;;]
+  
+  ;;a backwards shift move
+  ;;if not backOccupied and (not backWater or areCrossing)
+  ;;[
+  ;;  rt 180
+  ;;  fd adjustmentMove * terrainMod
+  ;;  stop
+  ;;]
+    
   
   
   
@@ -179,7 +230,7 @@ GRAPHICS-WINDOW
 930
 -1
 -1
-0.75
+1.0
 1
 10
 1
@@ -193,8 +244,8 @@ GRAPHICS-WINDOW
 1215
 0
 883
-0
-0
+1
+1
 1
 ticks
 30.0
@@ -258,7 +309,7 @@ CHOOSER
 groupSelected
 groupSelected
 0 1 2 3 4 5
-2
+0
 
 SLIDER
 10
@@ -269,7 +320,7 @@ forwardMove
 forwardMove
 0.1
 10
-1
+2.9
 0.1
 1
 NIL
@@ -284,7 +335,7 @@ adjustmentMove
 adjustmentMove
 0
 5
-0.9
+0
 0.05
 1
 NIL
@@ -314,7 +365,7 @@ normalTerrainExhaustion
 normalTerrainExhaustion
 0
 5
-1.9
+3.5
 0.1
 1
 NIL
@@ -359,7 +410,7 @@ rifleFreq
 rifleFreq
 0
 100
-44
+20
 1
 1
 NIL
@@ -374,7 +425,7 @@ artilleryFreq
 artilleryFreq
 0
 100
-50
+30
 1
 1
 NIL
