@@ -50,8 +50,8 @@ end
 to create-armies
   create-ui                                                           ;;union infantry
   create-ua                                                           ;;union artillery
-  ;;create-ci                                                           ;;confederate infantry
-  ;;create-ca                                                           ;;confederate artillery
+  create-ci                                                           ;;confederate infantry
+  create-ca                                                           ;;confederate artillery
 end
 
 to set-destinations
